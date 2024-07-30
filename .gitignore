@@ -16,6 +16,9 @@
 /readme.html
 /wp-*.php
 /xmlrpc.php
+/.idea/
+/node_modules/
+/wp-content/themes/monopp-navi/node_modules/
 
 # Configuration
 wp-config.php

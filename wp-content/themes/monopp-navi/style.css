@@ -1,0 +1,278 @@
+@charset "utf-8";
+/*
+Theme Name: monopp-navi
+Theme URI:
+Description: monopp-navi
+Version: 1.0
+Author: TENSHOKU ICHIBA Inc.
+Author URI: http://www.1049.cc
+*/
+
+
+/*@font-face {*/
+/*    font-family: 'Pristine Script';*/
+/*    src: url("./assets/fonts/Pristine-Script.ttf") format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: "dnp-shuei-mincho-pr6";*/
+/*    src: url("./assets/fonts/dnp-shuei-mincho-pr6-B.ttf") format('truetype');*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: "dnp-shuei-mincho-pr6";*/
+/*    src: url("./assets/fonts/dnp-shuei-mincho-pr6-M.ttf") format('truetype');*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: "dnp-shuei-mincho-pr6";*/
+/*    src: url("./assets/fonts/dnp-shuei-mincho-pr6-L.ttf") format('truetype');*/
+/*    font-weight: 300;*/
+/*}*/
+
+/* --------------------------------------------------------------
+ * Reset default browser CSS.
+-------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    outline: 0;
+}
+
+:focus {
+    outline: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section {
+    display: block;
+}
+
+caption, th, td {
+    font-weight: normal;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+
+blockquote, q {
+    quotes: "" "";
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*------------------------------------------------------------
+clearfix -micro
+------------------------------------------------------------*/
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*------------------------------------------------------------
+CommonStyle
+------------------------------------------------------------*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: #2E2E2E;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+
+body.modal-on,
+body.active {
+    overflow: hidden;
+}
+
+body.header-open {
+    overflow: hidden;
+}
+
+body,
+body * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+main {
+    flex: 1 1 auto;
+    min-height: 50vh;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+a {
+    display: inline-block;
+    color: #333333;
+    transition: .3s;
+}
+
+a img {
+    border: 0;
+}
+
+input,
+textarea,
+select {
+    border: solid 1px #cccccc;
+    background-color: transparent;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+input,
+textarea {
+    width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    height: 2.5em;
+}
+
+textarea,
+input:not([type="checkbox"]):not([type="radio"]) {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    vertical-align: baseline;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin: 0;
+}
+
+select,
+label {
+    cursor: pointer;
+}
+
+select {
+    -webkit-appearance: auto;
+    appearance: auto;
+}
+
+textarea {
+    padding: 10px;
+}
+
+.outer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.pc-only.modal-on {
+    overflow: auto;
+}
+
+::placeholder {
+    color: #919191;
+}
+
+::-ms-input-placeholder {
+    color: #919191;
+}
+
+:-ms-input-placeholder {
+    color: #919191;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track:hover {
+    background: #ccc;
+}
+
+body::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #777777;
+    border-radius: 10px;
+    border: 3.5px solid transparent;
+    background-clip: content-box;
+    cursor: pointer;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+
+.inner {
+    max-width: 1240px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+
+
