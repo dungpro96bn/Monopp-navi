@@ -140,4 +140,41 @@ function track_post_views($post_id) {
 // Kích hoạt theo dõi lượt xem
 add_action('wp_head', 'track_post_views');
 
+
+// Thêm cột số lượt xem vào danh sách bài viết
+function add_views_column($columns) {
+    $columns['post_views'] = 'Number of views';
+    return $columns;
+}
+add_filter('manage_posts_columns', 'add_views_column');
+
+// Hiển thị số lượt xem trong cột mới
+function display_views_column($column_name, $post_id) {
+    if ($column_name == 'post_views') {
+        $views = get_post_meta($post_id, 'post_views_count', true);
+        echo $views ? $views : '0';
+    }
+}
+add_action('manage_posts_custom_column', 'display_views_column', 10, 2);
+
+// sắp xếp cột số lượt xem
+function sort_views_column($query) {
+    if (!is_admin()) {
+        return;
+    }
+    if (isset($query->query['post_type']) && $query->query['post_type'] == 'post' && isset($query->query['orderby']) && $query->query['orderby'] == 'post_views') {
+        $query->set('meta_key', 'post_views_count');
+        $query->set('orderby', 'meta_value_num');
+    }
+}
+add_action('pre_get_posts', 'sort_views_column');
+
+function sortable_views_column($columns) {
+    $columns['post_views'] = 'post_views';
+    return $columns;
+}
+add_filter('manage_edit-post_sortable_columns', 'sortable_views_column');
+
+
+
 ?>
