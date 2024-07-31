@@ -180,42 +180,35 @@ jQuery(function ($) {
     });
 
 
-    // Check submit contact complete
-    setInterval(function () {
-        if($(".mw_wp_form_confirm .wpcf7-form").hasClass("sent")){
-            var strHref = window.location.href,
-                href = strHref.replace('confirm/', '');
-            $(".mw_wp_form_confirm .wpcf7-form").removeClass("sent");
-            window.location.replace(href + 'complete/');
-        }
-    }, 100);
-
-    $(".mw_wp_form_confirm .submit-form").click(function () {
-        localStorage.setItem('sendmail', 'complete');
+    // slider homepage
+    // ============================
+    $('#homepage .sliderList').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        speed: 600,
+        arrows: false,
+        // autoplay: true,
+        // autoplaySpeed: 3000,
+        dots: true,
+        centerMode: true,
+        variableWidth: true,
+        centerPadding: '0',
+        pauseOnHover: false,
     });
 
-    $(document).ready(function () {
-        var checkItem1 = document.getElementsByClassName('contact-form-complete');
-        var checkItem2 = document.getElementsByClassName('mw_wp_form_confirm');
-        if(checkItem1.length <= 0 || checkItem2.length <= 0){
-            localStorage.removeItem('sendmail');
-        }
+    function updateBackground(slideIndex) {
+        var currentSlide = $('#homepage .sliderList').slick('getSlick').$slides.eq(slideIndex);
+        var imgSrc = currentSlide.find('img').attr('src');
+        $('.bg-slider-post').css('background-image', 'url(' + imgSrc + ')');
+    }
+
+    $('#homepage .sliderList').on('afterChange', function(event, slick, currentSlide){
+        updateBackground(currentSlide);
     });
 
-    $(".link-top a").click(function () {
-        localStorage.removeItem('sendmail');
-    });
-
-
-    //Open line box
-    $("#line-contactBox .boxClose").click(function () {
-        $("#line-contactBox").addClass("is-hide");
-        $(".lineBox").removeClass("is-close");
-    });
-    $(".lineBox").click(function () {
-        $("#line-contactBox").removeClass("is-hide");
-        $(this).addClass("is-close");
-    });
+    var initialSlide = $('#homepage .sliderList').slick('slickCurrentSlide');
+    updateBackground(initialSlide);
 
 
     //scroll
@@ -230,105 +223,6 @@ jQuery(function ($) {
             return false;
         });
 
-        // $('.locationItem a').hover(function(event){
-        //     // event.preventDefault();
-        //     var url = $(this).attr('data-id');
-        //     // var dest = url.split('#');
-        //     var target = url;
-        //     $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-        //     // $(".tourInfo-item .aos-init").removeClass("aos-animate");
-        //     $(this).addClass("active");
-        //     $("#vietnam-tour").attr("data-map", target);
-        //     $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("active");
-        //     $('#'+target).addClass("active");
-        //     $(".vietnam-tour .tourInfo .list-imageTour").slick("refresh");
-        //     // AOS.refresh();
-        // });
-    });
-
-    // window.addEventListener('resize', function(event){
-    //     if ($(window).width() > 767) {
-    //         $('.locationItem a').hover(function(){
-    //             var url = $(this).attr('data-id');
-    //             var target = url;
-    //             // $(".tourInfo-item .aos-init").removeClass("aos-animate");
-    //             $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-    //             $(this).addClass("active");
-    //             $("#vietnam-tour").attr("data-map", target);
-    //             $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("active");
-    //             $('#'+target).addClass("active");
-    //             var id ='#'+target;
-    //             // $(id + ".tourInfo-item .aos-init").removeClass("aos-animate");
-    //             $(".vietnam-tour .tourInfo .list-imageTour").slick("refresh");
-    //             $(".vietnam-tour .tourInfo .list-thumbnailTour").slick("refresh");
-    //             // $('#'+target+ ' ' +".tourInfo-item .aos-init").removeClass("aos-animate");
-    //             // AOS.refresh();
-    //         });
-    //     } else {
-    //         $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-    //         $('.locationItem a').click(function(event){
-    //             event.preventDefault();
-    //             var url = $(this).attr('data-id');
-    //             var target = url;
-    //             $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-    //             $(this).addClass("active");
-    //             $("#vietnam-tour").attr("data-map", target);
-    //             $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("is-open");
-    //             $('#'+target).addClass("is-open");
-    //             $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("active");
-    //             $('#'+target).addClass("active");
-    //             $('#line-contactBox').fadeOut();
-    //             $(".vietnam-tour .tourInfo .list-imageTour").slick("refresh");
-    //             $(".vietnam-tour .tourInfo .list-thumbnailTour").slick("refresh");
-    //             // AOS.refresh();
-    //         });
-    //     }
-    // });
-
-    if ($(window).width() > 767) {
-        $('.locationItem a').hover(function(){
-            var url = $(this).attr('data-id');
-            var target = url;
-            $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-            $(this).addClass("active");
-            $("#vietnam-tour").attr("data-map", target);
-            $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("active");
-            $('#'+target).addClass("active");
-            // var id ='#'+target;
-            // $(id + ".tourInfo-item .aos-init").removeClass("aos-animate");
-            $(".vietnam-tour .tourInfo .list-imageTour").slick("refresh");
-            $(".vietnam-tour .tourInfo .list-thumbnailTour").slick("refresh");
-            // AOS.refresh();
-        });
-    } else {
-        $("#vietnam-tour").attr("data-map", "");
-        $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-        $(".tourInfo-item div").removeAttr("data-aos");
-        $('.locationItem a').click(function(event){
-            event.preventDefault();
-            var url = $(this).attr('data-id');
-            var target = url;
-            $(".vietnam-tour .map-tour .locationItem a").removeClass("active");
-            $(this).addClass("active");
-            $("#vietnam-tour").attr("data-map", target);
-            $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("is-open");
-            $('#'+target).addClass("is-open");
-            $(".vietnam-tour .tourInfo .tourInfo-item").removeClass("active");
-            $('#'+target).addClass("active");
-            $("body").addClass("active");
-            $('#line-contactBox').fadeOut();
-            $("#page-top").removeClass("is-open");
-            $(".vietnam-tour .tourInfo .list-imageTour").slick("refresh");
-            $(".vietnam-tour .tourInfo .list-thumbnailTour").slick("refresh");
-            // AOS.refresh();
-        });
-    }
-
-    $(".vietnam-tour .tourInfo-item .close-popup, .vietnam-tour .tourInfo .bg-tourInfo,.vietnam-tour .tourInfo .tag-location").click(function () {
-        $(this).parents(".tourInfo-item").removeClass("is-open");
-        $('#line-contactBox').fadeIn();
-        $("body").removeClass("active");
-        $("#page-top").addClass("is-open");
     });
 
 
@@ -396,271 +290,6 @@ jQuery(function ($) {
         $('#header-menu .header-nav').removeClass('site-header--opening');
     }
 
-    $(window).on('scroll', function () {
-        if($(window).width() < 1024){
-            var ptop = $(".footer-bottom").offset().top;
-            var scroll = $(window).scrollTop();
-            var windowHeight = $(window).height();
-            if (scroll > ptop - windowHeight) {
-                $('#line-contactBox').fadeOut();
-            } else {
-                $('#line-contactBox').fadeIn();
-            }
-        }
-    });
-
-
-    $(".tab-action").click(function (event) {
-        event.preventDefault();
-        $(".post-template .tourContent-info").removeClass("active");
-        $(".tab-action").removeClass("active");
-        $(".guide-infoContent").removeClass("active");
-        $(".tourContent-infoInner .aos-init").removeClass("aos-animate");
-        $(".guide-infoContent .aos-init").removeClass("aos-animate");
-        var url = $(this).attr('href');
-        var dest = url.split('#');
-        var target = dest[1];
-        $('#'+target).addClass("active");
-        $(this).addClass("active");
-        AOS.refresh();
-    });
-
-    $(".tab-action-hotel").click(function (event) {
-        event.preventDefault();
-        var idParents = $(this).parents(".hotel-colItem").attr("data-hotel");
-        $('[data-hotel="'+ idParents +'"] .tab-action-hotel').removeClass("active");
-        $(".hotel-colItem .aos-init").removeClass("aos-animate");
-        $(this).parents(".hotel-colItem").find(".hotel-by-rating").removeClass("active");
-        var url = $(this).attr('href');
-        var dest = url.split('#');
-        var target = dest[1];
-        $('#'+target).addClass("active");
-        $(this).addClass("active");
-        AOS.refresh();
-    });
-
-    //pagination ajax
-    var total = 1;
-    $('.hotel-by-rating .navigation-more a').click(function(e){
-        e.preventDefault();
-        var number = total += 1;
-        var dataMax = $(this).attr('data-max');
-        if(total >= dataMax){
-            $(this).addClass("is-stop");
-        }
-
-        $this = $(this);
-
-        $(this).addClass('is-loading');
-        var classParents = $(this).parents('.hotel-by-rating').attr('data-class');
-
-        var link = window.location.href.split('#')[0];
-        var urlPage = link + 'page/' + total;
-
-        $.ajax({
-            url: urlPage ,
-            type:'GET',
-            success: function(data){
-                var thisHtml =  $(data).find('#' + classParents + ' .hotel_list');
-                thisHtml.each(function(){
-                    var a = $(this).html();
-                    $('#'+classParents + ' .hotel_list').append(a);
-                });
-                $(".navigation-more a").removeClass('is-loading');
-                if(number >= dataMax){
-                    $this.addClass("is-opacity");
-                }
-            }
-        });
-    });
-
-
-    // navigation tourArea
-    // var totaltourArea = 1;
-    $("body").delegate('.tourArea .navigation-more a', "click", function(e) {
-        e.preventDefault();
-        var num = $(this).attr("data-after-load");
-        var totaltourArea = parseInt(num);
-        var number = totaltourArea += 1;
-        var dataMax = $(this).attr('data-max');
-        if(number >= dataMax){
-            $(this).addClass("is-stop");
-        }
-
-        $this = $(this);
-
-        $(this).attr("data-after-load", number);
-        $(this).addClass('is-loading');
-        var classParents = $(this).parents('.tourArea').attr('data-tour');
-
-        var link = window.location.href.split('#')[0];
-        var urlPage = link + 'page/' + totaltourArea;
-
-        $.ajax({
-            url: urlPage ,
-            type:'GET',
-            success: function(data){
-                var thisHtml =  $(data).find('.tourArea[data-tour="'+classParents + '"] .tourList-area');
-                thisHtml.each(function(){
-                    var a = $(this).html();
-                    $('.tourArea[data-tour="'+classParents + '"] .tourList-area').append(a);
-                });
-                $(".navigation-more a").removeClass('is-loading');
-                if(number >= dataMax){
-                    $this.addClass("is-opacity");
-                }
-            }
-        });
-    });
-
-    // navigation tourOverseas
-    $("body").delegate('.tourOverseas .navigation-more a', "click", function(e) {
-        e.preventDefault();
-        var num = $(this).attr("data-after-load");
-        var totaltourArea = parseInt(num);
-        var number = totaltourArea += 1;
-        var dataMax = $(this).attr('data-max');
-        if(number >= dataMax){
-            $(this).addClass("is-stop");
-        }
-
-        $this = $(this);
-
-        $(this).attr("data-after-load", number);
-        $(this).addClass('is-loading');
-        var classParents = $(this).parents('.tourOverseas').attr('data-tour');
-
-        var link = window.location.href.split('#')[0];
-        var urlPage = link + 'page/' + totaltourArea;
-
-        $.ajax({
-            url: urlPage ,
-            type:'GET',
-            success: function(data){
-                var thisHtml =  $(data).find('.tourOverseas[data-tour="'+classParents + '"] .overseas_list');
-                thisHtml.each(function(){
-                    var a = $(this).html();
-                    $('.tourOverseas[data-tour="'+classParents + '"] .overseas_list').append(a);
-                });
-                $(".navigation-more a").removeClass('is-loading');
-                if(number >= dataMax){
-                    $this.addClass("is-opacity");
-                }
-            }
-        });
-    });
-
-
-    $(document).ready(function () {
-        $(window).on('scroll', function () {
-            var checkCl = $('.header-top');
-            if (checkCl.length) {
-                var nav = $('.header-top').offset().top;
-            }
-            // var heightBlockP2 = $("#data-scroll-01").height();
-            // $("#welfare .block-main .block-img .max-width-img").css("height", heightBlockP2);
-
-            var top = $('.header-top').outerHeight();
-
-            if ($(window).scrollTop() >= nav) {
-                $('.columns-sidebar').addClass("sidebar-scroll");
-            } else {
-                $('.columns-sidebar').removeClass("sidebar-scroll");
-            }
-
-            var Y = $(window).height() - $(".sidebar-content").height() - top;
-            var headerBottom = $(".header-bottom").height();
-
-            var scroll = $(window).scrollTop();
-            var windowHeight = $(window).height();
-            var subfooter = $("#footer").offset().top;
-
-            if (scroll > subfooter - windowHeight + Y + 5) {
-                $('.columns-sidebar').addClass("hide-sidebar");
-            } else {
-                $('.columns-sidebar').removeClass("hide-sidebar");
-            }
-        });
-    });
-
-    setTimeout(function(){
-        var checkUrl = location.hash;
-        if(checkUrl){
-            var url = window.location.href.split('#')[0];
-            window.history.pushState(location.hash,'', url);
-        }
-    },2000);
-
-    $("input#email-address-confirmation").change(function () {
-        var valCheck = $("input#email-address").val(),
-            valConfirmation = $(this).val();
-        if(valConfirmation != valCheck && $(this).val().length !== 0){
-            $(".valid-confirm").remove();
-            $('<span class="valid-confirm" aria-hidden="true">Email does not match.</span>').appendTo($('span[data-name="email-address-confirmation"]'));
-        } else if( $(this).val().length === 0 || $(this).val().length === null ) {
-            $(".valid-confirm").remove();
-        } else {
-            $(".valid-confirm").remove();
-        }
-    })
-
-
-    var first = $(location).attr('pathname');
-    first.indexOf(1);
-    first.toLowerCase();
-    first = first.split("/")[1];
-    var pathName = '/'+first+'/';
-    $(".menu-item a").each(function () {
-        var href = $(this).attr('href');
-        if(href === pathName){
-            $(this).parents(".menu-item").addClass("current-menu-item");
-        }
-    });
-
-    $("#schedule-start").change(function () {
-        var valTime = $(this).val();
-        $(".tour-schedule-list").attr("data-time", valTime);
-    });
-
-    var checkImg = $(".post-template .inner-info p img");
-    if(checkImg.length){
-        checkImg.each(function () {
-            $(this).parents("p").addClass("contentImg");
-            $(this).parents("p").attr("data-image", "hasImage");
-        });
-    }
-
-    var checkUl = $(".post-template .inner-info ul");
-    if(checkUl.length){
-        checkUl.each(function () {
-            $(this).addClass("contentUl");
-        });
-    }
-
-    $(".post-template .inner-info").each(function () {
-        var checkImg1 = $(this).find("p img");
-        var checkUl1 = $(this).find("ul");
-        $this = $(this);
-        if(checkUl1.length){
-            var checkDataImg = checkUl1.prev().attr("data-image");
-            if(checkDataImg === "hasImage"){
-                $this.addClass("image-text");
-            }
-        }
-
-    });
-
-    $(".hotel-by-rating .hotel_item .hotel_information .btn-seeMore").click(function () {
-        var title = $(this).val();
-        var popupInfo = $(this).prev().html();
-        $("#hotel_popup .title-popup").html(title);
-        $("#hotel_popup .popupInfo").html(popupInfo);
-        $("#hotel_popup").addClass("is-open");
-    });
-
-    $("#hotel_popup .mask-popup, #hotel_popup .close-popup").click(function () {
-        $("#hotel_popup").removeClass("is-open");
-    })
 
 
 });

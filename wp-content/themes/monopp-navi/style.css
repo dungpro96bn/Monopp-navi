@@ -9,28 +9,30 @@ Author URI: http://www.1049.cc
 */
 
 
-/*@font-face {*/
-/*    font-family: 'Pristine Script';*/
-/*    src: url("./assets/fonts/Pristine-Script.ttf") format('truetype');*/
-/*}*/
+@font-face {
+    font-family: "LINE Seed JP_OTF";
+    src: url("assets/fonts/LINESeedJP_OTF_Eb.woff") format('woff');
+    font-weight: 800;
+}
 
-/*@font-face {*/
-/*    font-family: "dnp-shuei-mincho-pr6";*/
-/*    src: url("./assets/fonts/dnp-shuei-mincho-pr6-B.ttf") format('truetype');*/
-/*    font-weight: bold;*/
-/*}*/
+@font-face {
+    font-family: "LINE Seed JP_OTF";
+    src: url("assets/fonts/LINESeedJP_OTF_Bd.woff") format('woff');
+    font-weight: 700;
+}
 
-/*@font-face {*/
-/*    font-family: "dnp-shuei-mincho-pr6";*/
-/*    src: url("./assets/fonts/dnp-shuei-mincho-pr6-M.ttf") format('truetype');*/
-/*    font-weight: 500;*/
-/*}*/
+@font-face {
+    font-family: "LINE Seed JP_OTF";
+    src: url("assets/fonts/LINESeedJP_OTF_Rg.woff") format('woff');
+    font-weight: 400;
+}
 
-/*@font-face {*/
-/*    font-family: "dnp-shuei-mincho-pr6";*/
-/*    src: url("./assets/fonts/dnp-shuei-mincho-pr6-L.ttf") format('truetype');*/
-/*    font-weight: 300;*/
-/*}*/
+@font-face {
+    font-family: "LINE Seed JP_OTF";
+    src: url("assets/fonts/LINESeedJP_OTF_Th.woff") format('woff');
+    font-weight: 300;
+}
+
 
 /* --------------------------------------------------------------
  * Reset default browser CSS.
@@ -117,7 +119,7 @@ body {
     flex-direction: column;
     color: #2E2E2E;
     font-style: normal;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
     overflow-x: hidden;
@@ -145,7 +147,7 @@ input,
 textarea,
 select,
 button {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: "LINE Seed JP_OTF";
 }
 
 main {
@@ -269,10 +271,16 @@ body::-webkit-scrollbar-thumb:hover {
 
 
 .inner {
-    max-width: 1240px;
+    max-width: 1040px;
     margin: auto;
     padding: 0 20px;
 }
 
+.en, .ttl-en, .number{
+    font-family: "Roboto", sans-serif;
+}
 
+body{
+    margin-top: 64px;
+}
 

@@ -7,7 +7,7 @@
     breadcrumb();
   endif;
 ?>
-
+Title
 <div class="search-box">
   <p class="search-results-number">『<?php echo get_search_query(); ?>』での検索結果（<?php echo $wp_query->found_posts; ?> 件）</p>
   <?php if(have_posts()): ?>
