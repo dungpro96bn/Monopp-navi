@@ -44,11 +44,17 @@
 
     <?php if (is_admin_bar_showing()): ?>
         <style type="text/css" media="screen">
+            #header-menu{
+                top: 32px;
+            }
             #header-menu .header-nav.scroll-header {
                 top: 32px !important;
             }
 
             @media screen and (max-width: 782px) {
+                #header-menu{
+                    top: 46px;
+                }
                 #header-menu .header-nav.scroll-header {
                     top: 46px !important;
                 }
