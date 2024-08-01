@@ -7,20 +7,60 @@
         <div class="slider">
             <ul class="sliderList">
                 <?php
-                $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-                $args = array(
+                $argsSlider = array(
                     'post_type'=> 'post',
                     'post_status' => 'publish',
                     'order'    => 'DESC',
-                    'paged' => $paged,
-                    'posts_per_page' => '5',
-                    'tax_query'      => array(
+                    'posts_per_page' => '1',
+                    'meta_query'     => array(
                         array(
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => 'factory-column',
-                        ),
+                            'key'     => 'select_this_post_slider',
+                            'value'   => 'Yes',
+                            'compare' => 'LIKE'
+                        )
                     ),
+                );
+
+                $result = new WP_Query( $argsSlider );
+
+                if ( $result-> have_posts() ) : ?>
+                    <?php while ( $result->have_posts() ) : $result->the_post(); ?>
+                        <li class="sliderItem-post">
+                            <a class="link-post" href="<?php the_permalink(); ?>">
+                                <p class="image-post">
+                                    <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                </p>
+                                <h2 class="title-post"><?php echo get_the_title(); ?></h2>
+                            </a>
+                            <div class="info-bottom">
+                                <div class="category">
+                                    <?php
+                                    $country_lists = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
+                                    foreach ($country_lists as $country_list) { ?>
+                                        <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
+                                    <?php } ?>
+                                </div>
+                                <p class="date-time number"><?php echo get_the_date(); ?></p>
+                            </div>
+                        </li>
+                    <?php endwhile;?>
+                <?php endif;
+
+                $first_post_id = 0;
+                if ($result->have_posts()) {
+                    $result->the_post();
+                    $first_post_id = get_the_ID();
+                }
+                wp_reset_postdata(); ?>
+
+
+                <?php
+                $args = array(
+                    'post_type'=> 'post',
+                    'post_status' => 'publish',
+                    'post__not_in'   => array($first_post_id),
+                    'order'    => 'DESC',
+                    'posts_per_page' => '4'
                 );
                 $result = new WP_Query( $args );
                 if ( $result-> have_posts() ) : ?>
@@ -104,18 +144,55 @@
                     <h2 class="heading-block">人気記事</h2>
                     <ul class="popular-articles-list">
                         <?php
-                        $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
                         $args = array(
                             'post_type'      => 'post',
                             'post_status'    => 'publish',
+                            'order'         => 'DESC',
+                            'posts_per_page' => 1,
+                            'meta_query'     => array(
+                                array(
+                                    'key'     => 'select_popular_posts',
+                                    'value'   => 'Yes',
+                                    'compare' => 'LIKE'
+                                )
+                            ),
+                        );
+                        $result = new WP_Query( $args );
+                        if ( $result-> have_posts() ) : ?>
+                            <?php while ( $result->have_posts() ) : $result->the_post(); ?>
+                                <li class="popular-articles-item">
+                                    <a class="link-post" href="<?php the_permalink(); ?>">
+                                        <p class="image-post">
+                                            <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                        </p>
+                                        <div class="info">
+                                            <h2 class="title-post"><?php echo get_the_title(); ?></h2>
+                                            <p class="date-time number"><?php echo get_the_date(); ?></p>
+                                        </div>
+                                    </a>
+                                    <span class="number-post en">01</span>
+                                </li>
+                            <?php endwhile;?>
+                        <?php endif;
+                        $idSelect = 0;
+                        if ($result->have_posts()) {
+                            $result->the_post();
+                            $idSelect = get_the_ID();
+                        }
+                        wp_reset_postdata(); ?>
+
+                        <?php
+                        $args = array(
+                            'post_type'      => 'post',
+                            'post_status'    => 'publish',
+                            'post__not_in'   => array($idSelect),
                             'meta_key'       => 'post_views_count',
                             'orderby'       => 'meta_value_num',
                             'order'         => 'DESC',
-                            'paged'         => $paged,
-                            'posts_per_page' => 5,
+                            'posts_per_page' => 4,
                         );
                         $result = new WP_Query( $args );
-                        $num = 1;
+                        $num = 2;
                         if ( $result-> have_posts() ) : ?>
                             <?php while ( $result->have_posts() ) : $result->the_post(); ?>
                             <?php $numberPost = $num++; ?>
@@ -264,6 +341,40 @@
 
 
 </div>
+
+<script>
+
+    $(document).ready(function() {
+        $('#homepage .sliderList').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            speed: 600,
+            arrows: false,
+            // autoplay: true,
+            // autoplaySpeed: 3000,
+            dots: true,
+            centerMode: true,
+            variableWidth: true,
+            centerPadding: '0',
+            pauseOnHover: false,
+        });
+
+        function updateBackground(slideIndex) {
+            var currentSlide = $('#homepage .sliderList').slick('getSlick').$slides.eq(slideIndex);
+            var imgSrc = currentSlide.find('img').attr('src');
+            $('.bg-slider-post').css('background-image', 'url(' + imgSrc + ')');
+        }
+
+        $('#homepage .sliderList').on('afterChange', function(event, slick, currentSlide){
+            updateBackground(currentSlide);
+        });
+
+        var initialSlide = $('#homepage .sliderList').slick('slickCurrentSlide');
+        updateBackground(initialSlide);
+    });
+
+</script>
 
 
 <?php get_footer(); ?>

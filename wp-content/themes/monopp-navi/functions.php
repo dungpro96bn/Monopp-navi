@@ -175,6 +175,81 @@ function sortable_views_column($columns) {
 }
 add_filter('manage_edit-post_sortable_columns', 'sortable_views_column');
 
+//
+//function generate_table_of_contents($content) {
+//    if (is_singular() && !is_admin()) {
+//        // Tạo mục lục chỉ cho bài viết đơn
+//        $toc = '<div class="table-of-contents">';
+//        $toc .= '<div class="heading-table"><p class="title"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+//<path d="M7 11.4226C6.3812 11.7799 5.6188 11.7799 5 11.4226L1.80385 9.57735C1.18505 9.22008 0.803849 8.55983 0.803849 7.8453L0.803849 4.1547C0.803849 3.44017 1.18505 2.77992 1.80385 2.42265L5 0.577353C5.6188 0.220087 6.3812 0.220088 7 0.577353L10.1962 2.42265C10.815 2.77992 11.1962 3.44017 11.1962 4.1547L11.1962 7.8453C11.1962 8.55983 10.815 9.22009 10.1962 9.57735L7 11.4226Z" fill="#EE6E01"/>
+//</svg><span>CONTENTS</span></p></div>';
+//        $toc .= '<ul>';
+//
+//        // Tạo DOMDocument để xử lý nội dung
+//        $dom = new DOMDocument();
+//        @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+//
+//        // Lấy tất cả các thẻ tiêu đề từ h2 đến h4
+//        $headings = $dom->getElementsByTagName('h2');
+//        $headingLevels = array();
+//
+//        foreach ($headings as $heading) {
+//            $id = sanitize_title($heading->nodeValue);
+//            $heading->setAttribute('id', $id);
+//
+//            $toc .= '<li><a href="#' . $id . '">' . $heading->nodeValue . '</a>';
+//
+//            // Xử lý các thẻ h3 và h4 dưới h2
+//            $nextElement = $heading->nextSibling;
+//            while ($nextElement) {
+//                if ($nextElement->nodeName === 'h3' || $nextElement->nodeName === 'h4') {
+//                    if ($nextElement->nodeName === 'h3') {
+//                        $toc .= '<ul>';
+//                    }
+//                    while ($nextElement && ($nextElement->nodeName === 'h3' || $nextElement->nodeName === 'h4')) {
+//                        $subId = sanitize_title($nextElement->nodeValue);
+//                        $nextElement->setAttribute('id', $subId);
+//                        $toc .= '<li><a href="#' . $subId . '">' . $nextElement->nodeValue . '</a>';
+//
+//                        // Xử lý các thẻ h4 dưới h3
+//                        if ($nextElement->nodeName === 'h3') {
+//                            $subNextElement = $nextElement->nextSibling;
+//                            if ($subNextElement && $subNextElement->nodeName === 'h4') {
+//                                $toc .= '<ul>';
+//                                while ($subNextElement && $subNextElement->nodeName === 'h4') {
+//                                    $subSubId = sanitize_title($subNextElement->nodeValue);
+//                                    $subNextElement->setAttribute('id', $subSubId);
+//                                    $toc .= '<li><a href="#' . $subSubId . '">' . $subNextElement->nodeValue . '</a></li>';
+//                                    $subNextElement = $subNextElement->nextSibling;
+//                                }
+//                                $toc .= '</ul>';
+//                            }
+//                        }
+//
+//                        $toc .= '</li>';
+//                        $nextElement = $nextElement->nextSibling;
+//                    }
+//                    if ($nextElement->nodeName === 'h3') {
+//                        $toc .= '</ul>';
+//                    }
+//                } else {
+//                    break;
+//                }
+//            }
+//
+//            $toc .= '</li>';
+//        }
+//
+//        $toc .= '</ul>';
+//        $toc .= '</div>';
+//
+//        // Thêm mục lục vào đầu nội dung
+//        $content = $toc . $content;
+//    }
+//
+//    return $content;
+//}
+//add_filter('the_content', 'generate_table_of_contents');
 
 
 ?>

@@ -259,16 +259,10 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background: #777777;
     border-radius: 10px;
-    border: 3.5px solid transparent;
+    border: 2px solid transparent;
     background-clip: content-box;
     cursor: pointer;
 }
-
-body::-webkit-scrollbar-thumb:hover {
-    border: 2px solid transparent;
-    background-clip: content-box;
-}
-
 
 .inner {
     max-width: 1040px;

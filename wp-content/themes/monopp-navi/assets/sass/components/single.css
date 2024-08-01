@@ -1,0 +1,31 @@
+.actions-toolbar {
+  display: flex;
+  justify-content: center; }
+  .actions-toolbar .action-links {
+    border-radius: 40px;
+    border: 2px solid #EE6E01;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EE6E01;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 1.4px;
+    height: 53px;
+    padding: 0 32px;
+    transition: .3s; }
+    .actions-toolbar .action-links:hover {
+      background: #EE6E01;
+      color: #fff; }
+
+.single-main {
+  display: flex;
+  flex-wrap: wrap; }
+  .single-main .main-content {
+    width: calc(100% - 228px);
+    padding-right: 42px; }
+
+/*# sourceMappingURL=single.css.map */
