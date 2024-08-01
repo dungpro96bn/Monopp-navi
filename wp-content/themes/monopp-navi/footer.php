@@ -1,7 +1,5 @@
 </main>
 
-<?php get_sidebar(); ?>
-
 <footer id="footer" class="footer">
     <div id="page-top" class="page-top">
         <a href="#" class="page-top-anchor">
