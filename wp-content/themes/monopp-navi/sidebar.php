@@ -46,7 +46,7 @@
                     'post_type'      => 'post',
                     'post_status'    => 'publish',
                     'post__not_in'   => array($idSelect),
-                    'meta_key'       => 'post_views_count',
+                    'meta_key'       => 'post_view',
                     'orderby'       => 'meta_value_num',
                     'order'         => 'DESC',
                     'posts_per_page' => 4,
@@ -73,7 +73,7 @@
                 wp_reset_postdata(); ?>
             </ul>
             <div class="actions-toolbar">
-                <a class="action-links" href="#">人気記事一覧へ</a>
+                <a class="action-links" href="/popular-articles">人気記事一覧へ</a>
             </div>
         </div>
     </div>

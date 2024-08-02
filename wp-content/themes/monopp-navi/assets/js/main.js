@@ -272,5 +272,42 @@ jQuery(function ($) {
     }
 
 
+    //pagination ajax
+    var total = 1;
+    var numberPost = 3;
+    $('.navigation-more a').click(function(e){
+        e.preventDefault();
+        var postsPerPage = numberPost += 3;
+        var number = total += 1;
+        var dataMax = $(this).attr('data-max');
+        if(total >= dataMax){
+            $(this).addClass("is-stop");
+        }
+
+        $this = $(this);
+
+        $(this).addClass('is-loading');
+
+        var link = window.location.href.split('#')[0];
+        var urlPage = link + 'page/' + total;
+
+        $.ajax({
+            url: urlPage ,
+            type:'GET',
+            success: function(data){
+                var thisHtml =  $(data).find('.related-article-list');
+                thisHtml.each(function(){
+                    var a = $(this).html();
+                    $('.related-article-list').append(a);
+                });
+                $(".navigation-more a").removeClass('is-loading');
+                if(number >= dataMax){
+                    // $this.addClass("is-opacity");
+                    $this.parents(".navigation-more").remove();
+                }
+            }
+        });
+    });
+
 
 });

@@ -64,6 +64,27 @@
 
 </head>
 
+<style>
+    #loading-spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    #loading-spinner i {
+        font-size: 60px;
+        color: #000000;
+    }
+</style>
+
 <body <?php body_class(); ?>>
 <div class="outer">
     <header id="header-menu" class="header-menu">

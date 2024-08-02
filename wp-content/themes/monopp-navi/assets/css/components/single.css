@@ -144,6 +144,7 @@
 .single-main {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   padding-bottom: 80px;
 }
 .single-main .main-content {
@@ -391,9 +392,6 @@
 .single-main .search-job .action a:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
-.single-main #sidebar {
-  width: 288px;
-}
 
 .related-article {
   background: #fff;
@@ -486,4 +484,56 @@
   font-weight: 700;
   line-height: 1.5;
   text-align: right;
+}
+
+.navigation-more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 80px;
+}
+.navigation-more a {
+  position: relative;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #ed6d00 0, #ffd12e 100%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 54px;
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+.navigation-more a:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.navigation-more a.is-loading:after {
+  opacity: 1;
+}
+.navigation-more a.is-stop {
+  pointer-events: none;
+}
+.navigation-more a.is-opacity {
+  pointer-events: none;
+  opacity: 0.7;
+}
+.navigation-more a:after {
+  content: "";
+  position: absolute;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='margin: auto;background: transparent;display: block;shape-rendering: auto;' width='230px' height='230px' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'%3E%3Cg transform='rotate(0 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.9285714285714286s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(25.714285714285715 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.8571428571428571s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(51.42857142857143 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.7857142857142857s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(77.14285714285714 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.7142857142857143s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(102.85714285714286 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.6428571428571429s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(128.57142857142858 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.5714285714285714s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(154.28571428571428 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.5s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(180 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.42857142857142855s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(205.71428571428572 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.35714285714285715s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(231.42857142857142 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.2857142857142857s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(257.14285714285717 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.21428571428571427s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(282.85714285714283 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.14285714285714285s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(308.57142857142856 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='-0.07142857142857142s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3Cg transform='rotate(334.2857142857143 50 50)'%3E%3Crect x='44.5' y='10.5' rx='5.5' ry='5.5' width='11' height='11' fill='%23fff'%3E%3Canimate attributeName='opacity' values='1;0' keyTimes='0;1' dur='1s' begin='0s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/g%3E%3C!-- %5Bldio%5D generated by https://loading.io/ --%3E%3C/svg%3E");
+  width: 36px;
+  height: 36px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
 }

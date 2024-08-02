@@ -106,6 +106,7 @@ if (!empty($categories)) {
                         'post__not_in'   => array($post_id),
                         'order'    => 'DESC',
                         'posts_per_page' => '6',
+                        'orderby'        => 'rand',
                         'tax_query'      => array(
                             array(
                                 'taxonomy' => 'category',

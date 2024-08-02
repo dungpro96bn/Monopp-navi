@@ -114,5 +114,11 @@
 
 <?php wp_footer(); ?>
 
+<script>
+    $(window).on('load', function() {
+        $('#loading-spinner').remove();
+    });
+</script>
+
 </body>
 </html>
