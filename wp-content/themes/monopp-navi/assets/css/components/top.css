@@ -190,6 +190,9 @@
   row-gap: 40px;
   margin-bottom: 39px;
 }
+.article-block .new-article .new-article-list .article-item .link-post:hover .image-post {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
 .article-block .new-article .new-article-list .article-item .link-post:hover .image-post img {
   transform: scale(1.1);
 }
@@ -426,6 +429,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 38px;
+}
+.feature-article .feature-article-list .factory-column-item .link-post:hover .image-post {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
 }
 .feature-article .feature-article-list .factory-column-item .link-post:hover .image-post img {
   transform: scale(1.1);

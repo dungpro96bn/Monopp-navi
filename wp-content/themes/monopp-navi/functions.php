@@ -43,7 +43,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 	global $post;
 	global $homeName;
 	if ($homeName == '') {
-		$homeName = 'HOME';
+		$homeName = 'TOP';
 	}
 	$str ='';
 	if(!is_home()&&!is_admin()){
@@ -52,6 +52,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 			$tagAttribute .= sprintf(' %s="%s"', $attrName, $attrValue);
 		}
 		$str.= '<div'. $tagAttribute .'>';
+        $str.= '<div class="inner">';
 		$str.= '<ol>';
 		$str.= '<li><a href="'. home_url() .'/">' . $homeName . '</a></li>';
 
@@ -108,6 +109,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 			$str.='<li>'. wp_title('', true) .'</li>';
 		}
 		$str.='</ol>';
+        $str.='</div>';
 		$str.='</div>';
 	}
 	echo $str;
@@ -119,7 +121,6 @@ function set_post_views($postID) {
     $count = get_post_meta($postID, $count_key, true);
     if ($count == '') {
         $count = 0;
-        delete_post_meta($postID, $count_key);
         add_post_meta($postID, $count_key, '0');
     } else {
         $count++;
@@ -134,7 +135,18 @@ function track_post_views($post_id) {
         global $post;
         $post_id = $post->ID;
     }
-    set_post_views($post_id);
+
+    // Tạo tên cookie dựa trên ID bài viết
+    $cookie_name = 'viewed_post_' . $post_id;
+
+    // Kiểm tra xem cookie đã tồn tại chưa
+    if (!isset($_COOKIE[$cookie_name])) {
+        // Nếu chưa có cookie, tăng số lượt xem
+        set_post_views($post_id);
+
+        // Đặt cookie với thời gian hết hạn (ví dụ: 1 ngày)
+        setcookie($cookie_name, '1', time() + 86400, '/');
+    }
 }
 
 // Kích hoạt theo dõi lượt xem
