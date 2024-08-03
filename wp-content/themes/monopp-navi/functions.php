@@ -126,21 +126,25 @@ function add_ajax_script() {
 add_action('wp_head', 'add_ajax_script');
 
 
+
 add_action('wp_ajax_quick_search', 'quick_search_callback');
-add_action('wp_ajax_nopriv_quick_search', 'quick_search_callback'); // Nếu bạn muốn cho phép tìm kiếm cho người dùng chưa đăng nhập
+add_action('wp_ajax_nopriv_quick_search', 'quick_search_callback'); // cho phép tìm kiếm cho người dùng chưa đăng nhập
 
 function quick_search_callback() {
     global $wpdb;
 
+    // Lấy giá trị tìm kiếm từ yêu cầu
     $query = isset($_GET['query']) ? sanitize_text_field($_GET['query']) : '';
 
     $response = [
         'count' => 0,
         'html'  => '',
-        'link'  => ''
+        'link'  => '',
+        'show_link' => true
     ];
 
     if (!empty($query)) {
+        // Chia giá trị tìm kiếm thành các từ khóa
         $search_terms = explode(' ', $query);
         $search_terms = array_map('esc_sql', $search_terms);
 
@@ -170,54 +174,58 @@ function quick_search_callback() {
             WHERE ($query_string)
             AND post_status = 'publish'
             AND post_type = 'post'
-            LIMIT 4
+            LIMIT 6
         ");
 
         // Lưu số lượng bài viết
         $response['count'] = $total_results;
 
         if ($results) {
-            foreach ($results as $post): ?>
-            <?php
+            foreach ($results as $post) {
+                // Lấy thông tin bài viết
                 $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'thumbnail');
                 $categories = get_the_category($post->ID);
-                $cat_name = $categories[0]->cat_name;
-                $cat_link = get_category_link($post->ID);
+                $cat_name = !empty($categories) ? $categories[0]->cat_name : 'Chưa có danh mục';
+                $cat_link = !empty($categories) ? get_category_link($categories[0]->term_id) : '#';
                 $post_date = get_the_date('', $post->ID);
-                ?>
-                <div class="search-result-item">
-                    <a href="<?php echo get_permalink($post->ID); ?>" class="post-link">
-                        <div class="image-post">
-                            <div class="img-inner">
-                                <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($post->post_title); ?>">
-                            </div>
-                        </div>
-                        <div class="info">
-                            <h2 class="title-post"><?php echo esc_html($post->post_title); ?></h2>
-                            <div class="info-bottom">
-                                <div class="category">
-                                    <span data-href="<?php echo esc_url($cat_link); ?>"># <?php echo esc_html($cat_name); ?></span>
-                                </div>
-                                <p class="date-time number"><?php echo esc_html($post_date); ?></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <?php endforeach; ?>
-        <?php } else {
-            echo '<p  class="ttl-en result-error">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>';
+
+                // Tạo HTML cho kết quả
+                $response['html'] .= '<div class="search-result-item">';
+                $response['html'] .= '<div class="post-link">';
+                if ($thumbnail_url) {
+                    $response['html'] .= '<div class="image-post"><a href="'. esc_url(get_permalink($post->ID)) .'">';
+                    $response['html'] .= '<div class="img-inner">';
+                    $response['html'] .= '<img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr($post->post_title) . '">';
+                    $response['html'] .= '</div></a>';
+                    $response['html'] .= '</div>';
+                }
+                $response['html'] .= '<div class="info">';
+                $response['html'] .= '<h2 class="title-post"><a href="'. esc_url(get_permalink($post->ID)) .'"> ' . esc_html($post->post_title) . '</a></h2>';
+                $response['html'] .= '<div class="info-bottom">';
+                $response['html'] .= '<div class="category">';
+                $response['html'] .= '<a href="' . esc_url($cat_link) . '"># ' . esc_html($cat_name) . '</a>';
+                $response['html'] .= '</div>';
+                $response['html'] .= '<p class="date-time number">' . esc_html($post_date) . '</p>';
+                $response['html'] .= '</div>';
+                $response['html'] .= '</div>';
+                $response['html'] .= '</div>';
+                $response['html'] .= '</div>';
+            }
+
+            // Thêm liên kết đến trang tìm kiếm với tổng số bài viết tìm được
+            $search_url = esc_url(add_query_arg('s', $query, home_url('/')));
+            $response['link'] = '<a class="ttl-en" href="' . $search_url . '">Views All (' . $total_results . ')</a>';
+
+        } else {
+            $response['html'] .= '<p class="ttl-en result-error">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>';
+            $response['show_link'] = false;
         }
-
-        // Thêm liên kết đến trang tìm kiếm với tổng số bài viết tìm được
-        $search_url = esc_url(add_query_arg('s', $query, home_url('/search/')));
-        $response['link'] = '<a href="' . $search_url . '">Xem tất cả ' . $total_results . ' kết quả tìm kiếm</a>';
-
+    } else {
+        $response['html'] .= '<p>Please enter search keywords.</p>';
+        $response['show_link'] = false;
     }
 
-    wp_die(); // Kết thúc AJAX request
+    wp_send_json($response); // Kết thúc AJAX request
 }
-
-
-
 
 ?>

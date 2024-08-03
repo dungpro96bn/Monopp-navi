@@ -146,6 +146,7 @@ jQuery(function ($) {
         if ($(this).val() !== '') {
             $(this).parents('.control').addClass('active');
             $(this).parents(".searchForm").addClass("is-active");
+            $(".searchForm").removeClass("is-active");
         }
     });
 
@@ -183,6 +184,11 @@ jQuery(function ($) {
         $(".searchForm").removeClass("is-active");
         $("body").removeClass("search-focus");
         $(this).hide();
-    })
+    });
+
+    $(".search-result-item .category span").click(function () {
+        var href = $(this).attr("data-href");
+        window.location.replace("href");
+    });
 
 });

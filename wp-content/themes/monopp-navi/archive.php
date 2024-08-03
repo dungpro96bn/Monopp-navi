@@ -23,11 +23,6 @@ if ($category && isset($category->name)) {
                 <ul class="related-article-list">
                     <?php
                     while (have_posts()) : the_post();
-                        $category = get_the_category();
-                        $cat_id = $category[0]->cat_ID;
-                        $cat_name = $category[0]->cat_name;
-                        $cat_slug = $category[0]->category_nicename;
-                        $cat_link = get_category_link($cat_id);
                         ?>
                         <li class="article-item">
                             <a class="link-post" href="<?php the_permalink(); ?>">
@@ -38,7 +33,11 @@ if ($category && isset($category->name)) {
                             </a>
                             <div class="info-bottom">
                                 <div class="category">
-                                    <a href="<?php echo $cat_link; ?>"># <?php echo $cat_name; ?></a>
+                                    <?php
+                                    $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                                    foreach($country_lists as $country_list) { ?>
+                                        <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
+                                    <?php } ?>
                                 </div>
                                 <p class="date-time number"><?php echo get_the_date(); ?></p>
                             </div>

@@ -15,12 +15,7 @@ endif;
                 <h2 class="heading"><span class="ttl-en">Results for: </span>"<?php echo get_search_query(); ?>"</h2>
                 <?php if (have_posts()): ?>
                     <ul class="related-article-list">
-                        <?php while (have_posts()): the_post();
-                            $category = get_the_category();
-                            $cat_id = $category[0]->cat_ID;
-                            $cat_name = $category[0]->cat_name;
-                            $cat_slug = $category[0]->category_nicename;
-                            $cat_link = get_category_link($cat_id); ?>
+                        <?php while (have_posts()): the_post(); ?>
                             <li class="article-item">
                                 <a class="link-post" href="<?php the_permalink(); ?>">
                                     <p class="image-post">
@@ -30,7 +25,11 @@ endif;
                                 </a>
                                 <div class="info-bottom">
                                     <div class="category">
-                                        <a href="<?php echo $cat_link; ?>"># <?php echo $cat_name; ?></a>
+                                        <?php
+                                        $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                                        foreach($country_lists as $country_list) { ?>
+                                            <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
+                                        <?php } ?>
                                     </div>
                                     <p class="date-time number"><?php echo get_the_date(); ?></p>
                                 </div>
@@ -38,7 +37,7 @@ endif;
                         <?php endwhile; ?>
                     </ul>
                 <?php else : ?>
-                    <p class="search-results-none">検索条件にヒットした記事がありませんでした。</p>
+                    <p class="search-results-none en">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>
                 <?php endif; ?>
             </div>
         </div>

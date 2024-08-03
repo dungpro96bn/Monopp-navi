@@ -111,7 +111,7 @@
                     ); ?>
                 </div>
                 <div class="header-action-right">
-                    <div class="searchForm">
+                    <div class="searchForm" id="search-form">
                         <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
                             <label class="control">
                                 <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('サイト内検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
@@ -126,7 +126,8 @@
                         </form>
                         <div class="results-form">
                             <div class="results-box"></div>
-                            <div class="results-count"></div>
+<!--                            <div class="results-count ttl-en"></div>-->
+                            <div class="search-link"></div>
                             <div class="loading"><img src="<?php bloginfo('template_directory'); ?>/assets/images/loader-1.gif" alt=""></div>
                         </div>
                     </div>
@@ -149,12 +150,25 @@
         <div class="bg-popup"></div>
 
         <script>
+            document.getElementById('search-form').addEventListener('submit', function(event) {
+                var searchBox = document.getElementById('search-box');
+                if (searchBox.value.length < 2) {
+                    event.preventDefault();
+                    $error = '<p class="ttl-en result-error">Please enter at least 2 characters to search.</p>'
+                    $('.results-box').html($error);
+                    $(".searchForm").addClass("is-active");
+                    $("body").addClass("search-focus");
+                }
+            });
+        </script>
+
+        <script>
             $(document).ready(function($) {
                 var debounceTime = 1000;
                 var debounceTimeout;
                 var lastQuery = ''; // Biến lưu trữ giá trị tìm kiếm trước đó
 
-                $(document).on('input', '.searchForm form input', function() {
+                $(document).on('focus input', '.searchForm form input', function() {
                     clearTimeout(debounceTimeout); // Xóa timeout trước đó nếu có
 
                     var query = $(this).val(); // Lấy giá trị của ô tìm kiếm
@@ -182,8 +196,14 @@
                                     query: query // Truyền giá trị tìm kiếm
                                 },
                                 success: function(response) {
-                                    $('.results-box').html(response); // Hiển thị kết quả trong div.results-box
-                                    $('.results-count').html('Tổng số bài viết tìm thấy: ' + response.count);
+                                    $('.results-box').html(response.html); // Hiển thị kết quả trong div.results-box
+
+                                    if (response.count > 2) {
+                                        $('.search-link').html(response.link).show(); // Hiển thị liên kết đến trang tìm kiếm nếu có nhiều hơn 2 kết quả
+                                    } else {
+                                        $('.search-link').hide(); // Ẩn liên kết tìm kiếm nếu ít hơn hoặc bằng 2 kết quả
+                                    }
+
                                     $(".searchForm").addClass("is-active");
                                     $(".amsearch-loader-block").hide();
                                     $(".loading").removeClass("active");
@@ -195,7 +215,7 @@
                             });
                         } else {
                             $('.results-box').empty(); // Xóa kết quả nếu ô tìm kiếm rỗng
-                            $('.results-count').empty();
+                            $('.search-link').hide(); // Ẩn liên kết tìm kiếm
                             $(".searchForm").removeClass("is-active");
                             $(".loading").removeClass("active");
                             $(".amsearch-loader-block").hide();

@@ -167,7 +167,7 @@
         max-width: 500px;
         background: #fff;
         right: 0;
-        top: 100%;
+        top: calc(100% + 1px);
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
         padding: 32px 22px 32px 32px;
         border-radius: 12px;
@@ -204,7 +204,7 @@
           padding-right: 10px;
 
           &::-webkit-scrollbar {
-            width: 8px;
+            width: 7px;
             border-radius: 6px
           }
 
@@ -227,12 +227,37 @@
         }
 
         .result-error{
-          color: #51a940;
+          color: #2E2E2E;
           font-size: 16px;
           font-style: normal;
           font-weight: 500;
           line-height: 1.5;
           text-align: center;
+        }
+
+        .results-count{
+          color: #2E2E2E;
+          font-size: 16px;
+          font-weight: 400;
+          margin-top: 30px;
+          border-top: 1px solid;
+          padding-top: 15px;
+        }
+
+        .search-link{
+
+          a{
+            color: #51a940;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-top: 20px;
+
+            &:hover{
+              text-decoration: underline;
+            }
+
+          }
         }
 
         .search-result-item{
@@ -242,7 +267,7 @@
             margin-bottom: 0;
           }
 
-          a{
+          .post-link{
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
@@ -250,6 +275,16 @@
 
           .image-post{
             width: 30%;
+
+            a{
+              display: block;
+
+              &:hover{
+                img{
+                  //transform: scale(1.1);
+                }
+              }
+            }
 
             .img-inner{
               position: relative;
@@ -277,13 +312,21 @@
           }
 
           .title-post{
-            color: #2E2E2E;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 1.5;
-            letter-spacing: 1.6px;
-            margin-bottom: 12px;
+
+            a{
+              color: #2E2E2E;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 1.5;
+              letter-spacing: 1.6px;
+              margin-bottom: 12px;
+
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+
           }
 
           .info-bottom{
@@ -294,14 +337,18 @@
 
           .category{
             display: flex;
+            position: relative;
+            z-index: 5;
 
-            span{
+            a{
               color: #51A940;
               font-size: 12px;
               font-style: normal;
               font-weight: 700;
               line-height: 1.5;
               letter-spacing: 1.2px;
+              position: relative;
+              z-index: 5;
 
               &:hover{
                 text-decoration: underline;
@@ -355,8 +402,8 @@
         }
 
         &.active{
-          width: calc(100% + 50px);
-          margin-left: -50px;
+          width: calc(100% + 80px);
+          margin-left: -80px;
 
           input{
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);

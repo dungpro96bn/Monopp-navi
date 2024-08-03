@@ -51,6 +51,25 @@
   }
 }
 
+.heateor_sss_sharing_container{
+  margin-bottom: 50px;
+
+  .heateor_sss_sharing_ul{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    column-gap: 10px;
+
+    a{
+      margin: 0 !important;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .heateor_sss_svg{
+      width: 100% !important;
+    }
+  }
+}
 
 .header-entry{
   margin-top: 40px;
@@ -630,6 +649,17 @@
 }
 
 
-
+.search-box{
+  .search-results-none{
+    color: #2e2e2e;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 40px;
+    text-align: center;
+  }
+}
 
 
