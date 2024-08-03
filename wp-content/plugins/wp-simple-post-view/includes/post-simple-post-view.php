@@ -42,13 +42,20 @@ if ( ! class_exists( 'NGD_wpSimplePostView' ) ) {
 
 		public function ngd_insertProcessPostviewFun() {
 			
-			global $user_ID, $post;			
-			
-			if ( is_int( $post ) ) {
-				$post = get_post( $post );
-			}
-			
-			$id = (int) $post->ID;
+			global $user_ID, $post;
+
+            if ( is_int( $post ) ) {
+                $post = get_post( $post );
+            }
+
+            // Check if $post is not null before accessing its properties
+            if ( $post !== null ) {
+                $id = (int) $post->ID;
+            } else {
+                // Handle the case where $post is null
+                $id = 0; // or any default value or error handling as needed
+            }
+
 			$currentIP = NGD_wpSimplePostView::ngd_getCurrentIPAddressForPostView();
 			
 			$is_post_view = false;

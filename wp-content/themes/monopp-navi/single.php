@@ -28,8 +28,8 @@ if (!empty($categories)) {
                     <div class="info-bottom">
                         <div class="category">
                             <?php
-                            $country_lists = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
-                            foreach ($country_lists as $country_list) { ?>
+                            $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                            foreach($country_lists as $country_list) { ?>
                                 <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
                             <?php } ?>
                         </div>
@@ -128,8 +128,8 @@ if (!empty($categories)) {
                                 <div class="info-bottom">
                                     <div class="category">
                                         <?php
-                                        $country_lists = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
-                                        foreach ($country_lists as $country_list) { ?>
+                                        $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                                        foreach($country_lists as $country_list) { ?>
                                             <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
                                         <?php } ?>
                                     </div>

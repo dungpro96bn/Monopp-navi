@@ -5,25 +5,16 @@
 </div>
 <div class="related-article">
     <div class="inner">
-        <h2 class="heading"><?php the_title() ?></h2>
+        <h2 class="heading"><?php the_title(); ?></h2>
         <ul class="related-article-list">
             <?php
             $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
             $args = array(
-                'post_type' => 'post',
+                'post_type'=> 'post',
                 'post_status' => 'publish',
+                'order'    => 'DESC',
                 'paged' => $paged,
                 'posts_per_page' => 9,
-                'meta_key' => 'post_view',
-                'orderby' => 'meta_value_num',
-                'order' => 'DESC',
-                'meta_query' => array(
-                    array(
-                        'key' => 'post_view',
-                        'value'   => array(''),
-                        'compare' => 'NOT IN'
-                    ),
-                ),
             );
             $result = new WP_Query( $args );
             if ( $result-> have_posts() ) : ?>
@@ -38,11 +29,10 @@
                         <div class="info-bottom">
                             <div class="category">
                                 <?php
-                                $country_lists = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
+                                $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
                                 foreach ($country_lists as $country_list) { ?>
                                     <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
                                 <?php } ?>
-<!--                                --><?php //echo "(" . get_field('post_view') . ")"; ?>
                             </div>
                             <p class="date-time number"><?php echo get_the_date(); ?></p>
                         </div>

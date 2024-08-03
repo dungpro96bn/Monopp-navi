@@ -278,3 +278,15 @@ body{
     margin-top: 64px;
 }
 
+input[type="search"]::-webkit-search-decoration:hover,
+input[type="search"]::-webkit-search-cancel-button:hover {
+    display: none;
+}
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+
+body.search-focus main,
+body.search-focus footer{
+    filter: blur(4px);
+}

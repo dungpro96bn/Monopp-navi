@@ -87,6 +87,7 @@
 
 <body <?php body_class(); ?>>
 <div class="outer">
+    <div class="bg-loading-search"></div>
     <header id="header-menu" class="header-menu">
         <div class="header-nav">
             <div class="header-inner">
@@ -112,10 +113,22 @@
                 <div class="header-action-right">
                     <div class="searchForm">
                         <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
-                            <label>
-                                <input type="search" class="search-field" placeholder="<?php echo esc_attr_x('サイト内検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+                            <label class="control">
+                                <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('サイト内検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+                                <button>
+                                    <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="6.87435" cy="7.33772" r="5.37435" stroke="#A0A0A0" stroke-width="3"/>
+                                        <rect x="11.0796" y="10.0928" width="7.77743" height="2.74974" transform="rotate(45 11.0796 10.0928)" fill="#A0A0A0"/>
+                                    </svg>
+                                </button>
+                                <div class="amsearch-loader-block"></div>
                             </label>
                         </form>
+                        <div class="results-form">
+                            <div class="results-box"></div>
+                            <div class="results-count"></div>
+                            <div class="loading"><img src="<?php bloginfo('template_directory'); ?>/assets/images/loader-1.gif" alt=""></div>
+                        </div>
                     </div>
                     <div class="btn-openMenu">
                     <span class="icon-btnMenu">
@@ -134,3 +147,60 @@
 
     <main role="main">
         <div class="bg-popup"></div>
+
+        <script>
+            $(document).ready(function($) {
+                var debounceTime = 1000;
+                var debounceTimeout;
+                var lastQuery = ''; // Biến lưu trữ giá trị tìm kiếm trước đó
+
+                $(document).on('input', '.searchForm form input', function() {
+                    clearTimeout(debounceTimeout); // Xóa timeout trước đó nếu có
+
+                    var query = $(this).val(); // Lấy giá trị của ô tìm kiếm
+
+                    // Nếu giá trị tìm kiếm không thay đổi, không thực hiện tìm kiếm
+                    if (query === lastQuery) {
+                        return;
+                    }
+
+                    // Cập nhật giá trị tìm kiếm trước đó
+                    lastQuery = query;
+
+                    if (query.length > 1) {
+                        $(".amsearch-loader-block").show();
+                        $(".loading").addClass("active");
+                    }
+
+                    debounceTimeout = setTimeout(function() {
+                        if (query.length > 1) {
+                            $.ajax({
+                                url: ajaxurl, // URL của endpoint AJAX trong WordPress
+                                type: 'GET',
+                                data: {
+                                    action: 'quick_search', // Tên hành động AJAX
+                                    query: query // Truyền giá trị tìm kiếm
+                                },
+                                success: function(response) {
+                                    $('.results-box').html(response); // Hiển thị kết quả trong div.results-box
+                                    $('.results-count').html('Tổng số bài viết tìm thấy: ' + response.count);
+                                    $(".searchForm").addClass("is-active");
+                                    $(".amsearch-loader-block").hide();
+                                    $(".loading").removeClass("active");
+                                },
+                                error: function() {
+                                    $('.results-box').html('<p class="ttl-en">Đã xảy ra lỗi. Vui lòng thử lại sau.</p>'); // Xử lý lỗi
+                                    $(".amsearch-loader-block").hide();
+                                }
+                            });
+                        } else {
+                            $('.results-box').empty(); // Xóa kết quả nếu ô tìm kiếm rỗng
+                            $('.results-count').empty();
+                            $(".searchForm").removeClass("is-active");
+                            $(".loading").removeClass("active");
+                            $(".amsearch-loader-block").hide();
+                        }
+                    }, debounceTime); // Đặt timeout để thực hiện tìm kiếm sau thời gian debounce
+                });
+            });
+        </script>

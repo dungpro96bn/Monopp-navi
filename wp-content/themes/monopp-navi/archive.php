@@ -8,10 +8,17 @@ if (function_exists('breadcrumb')) :
 endif;
 ?>
 
+<?php
+$category = get_queried_object();
+if ($category && isset($category->name)) {
+    $category_name = $category->name;
+}
+?>
+
     <div id="archive" class="new-container">
         <div class="related-article">
             <div class="inner">
-                <h2 class="heading">新着記事一覧</h2>
+                <h2 class="heading"><?php echo $category_name; ?></h2>
                 <?php if (have_posts()) : ?>
                 <ul class="related-article-list">
                     <?php

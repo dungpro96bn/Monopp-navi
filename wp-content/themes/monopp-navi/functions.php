@@ -115,77 +115,108 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 	echo $str;
 }
 
-//// Hàm để cập nhật số lượt xem
-//function set_post_views($postID) {
-//    $count_key = 'post_views_count';
-//    $count = get_post_meta($postID, $count_key, true);
-//    if ($count == '') {
-//        $count = 0;
-//        add_post_meta($postID, $count_key, '0');
-//    } else {
-//        $count++;
-//        update_post_meta($postID, $count_key, $count);
-//    }
-//}
-//
-//// Hàm để theo dõi lượt xem khi xem bài viết
-//function track_post_views($post_id) {
-//    if (!is_single()) return;
-//    if (empty($post_id)) {
-//        global $post;
-//        $post_id = $post->ID;
-//    }
-//
-//    // Tạo tên cookie dựa trên ID bài viết
-//    $cookie_name = 'viewed_post_' . $post_id;
-//
-//    // Kiểm tra xem cookie đã tồn tại chưa
-//    if (!isset($_COOKIE[$cookie_name])) {
-//        // Nếu chưa có cookie, tăng số lượt xem
-//        set_post_views($post_id);
-//
-//        // Đặt cookie với thời gian hết hạn (ví dụ: 1 ngày)
-//        setcookie($cookie_name, '1', time() + 43200, '/');
-//    }
-//}
-//
-//// Kích hoạt theo dõi lượt xem
-//add_action('wp_head', 'track_post_views');
-//
-//
-//// Thêm cột số lượt xem vào danh sách bài viết
-//function add_views_column($columns) {
-//    $columns['post_views'] = 'Number of views';
-//    return $columns;
-//}
-//add_filter('manage_posts_columns', 'add_views_column');
-//
-//// Hiển thị số lượt xem trong cột mới
-//function display_views_column($column_name, $post_id) {
-//    if ($column_name == 'post_views') {
-//        $views = get_post_meta($post_id, 'post_views_count', true);
-//        echo $views ? $views : '0';
-//    }
-//}
-//add_action('manage_posts_custom_column', 'display_views_column', 10, 2);
-//
-//// sắp xếp cột số lượt xem
-//function sort_views_column($query) {
-//    if (!is_admin()) {
-//        return;
-//    }
-//    if (isset($query->query['post_type']) && $query->query['post_type'] == 'post' && isset($query->query['orderby']) && $query->query['orderby'] == 'post_views') {
-//        $query->set('meta_key', 'post_views_count');
-//        $query->set('orderby', 'meta_value_num');
-//    }
-//}
-//add_action('pre_get_posts', 'sort_views_column');
-//
-//function sortable_views_column($columns) {
-//    $columns['post_views'] = 'post_views';
-//    return $columns;
-//}
-//add_filter('manage_edit-post_sortable_columns', 'sortable_views_column');
+
+function add_ajax_script() {
+    ?>
+    <script type="text/javascript">
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+    </script>
+    <?php
+}
+add_action('wp_head', 'add_ajax_script');
+
+
+add_action('wp_ajax_quick_search', 'quick_search_callback');
+add_action('wp_ajax_nopriv_quick_search', 'quick_search_callback'); // Nếu bạn muốn cho phép tìm kiếm cho người dùng chưa đăng nhập
+
+function quick_search_callback() {
+    global $wpdb;
+
+    $query = isset($_GET['query']) ? sanitize_text_field($_GET['query']) : '';
+
+    $response = [
+        'count' => 0,
+        'html'  => '',
+        'link'  => ''
+    ];
+
+    if (!empty($query)) {
+        $search_terms = explode(' ', $query);
+        $search_terms = array_map('esc_sql', $search_terms);
+
+        // Tạo các điều kiện tìm kiếm
+        $conditions = [];
+        foreach ($search_terms as $term) {
+            $conditions[] = $wpdb->prepare("post_title LIKE %s", '%' . $wpdb->esc_like($term) . '%');
+            $conditions[] = $wpdb->prepare("post_content LIKE %s", '%' . $wpdb->esc_like($term) . '%');
+        }
+
+        // Kết hợp các điều kiện
+        $query_string = implode(' OR ', $conditions);
+
+        // Thực hiện truy vấn để lấy số lượng bài viết
+        $total_results = $wpdb->get_var("
+            SELECT COUNT(ID)
+            FROM $wpdb->posts
+            WHERE ($query_string)
+            AND post_status = 'publish'
+            AND post_type = 'post'
+        ");
+
+        // Thực hiện truy vấn để lấy các bài viết (giới hạn 4 bài)
+        $results = $wpdb->get_results("
+            SELECT ID, post_title
+            FROM $wpdb->posts
+            WHERE ($query_string)
+            AND post_status = 'publish'
+            AND post_type = 'post'
+            LIMIT 4
+        ");
+
+        // Lưu số lượng bài viết
+        $response['count'] = $total_results;
+
+        if ($results) {
+            foreach ($results as $post): ?>
+            <?php
+                $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'thumbnail');
+                $categories = get_the_category($post->ID);
+                $cat_name = $categories[0]->cat_name;
+                $cat_link = get_category_link($post->ID);
+                $post_date = get_the_date('', $post->ID);
+                ?>
+                <div class="search-result-item">
+                    <a href="<?php echo get_permalink($post->ID); ?>" class="post-link">
+                        <div class="image-post">
+                            <div class="img-inner">
+                                <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($post->post_title); ?>">
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h2 class="title-post"><?php echo esc_html($post->post_title); ?></h2>
+                            <div class="info-bottom">
+                                <div class="category">
+                                    <span data-href="<?php echo esc_url($cat_link); ?>"># <?php echo esc_html($cat_name); ?></span>
+                                </div>
+                                <p class="date-time number"><?php echo esc_html($post_date); ?></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php } else {
+            echo '<p  class="ttl-en result-error">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>';
+        }
+
+        // Thêm liên kết đến trang tìm kiếm với tổng số bài viết tìm được
+        $search_url = esc_url(add_query_arg('s', $query, home_url('/search/')));
+        $response['link'] = '<a href="' . $search_url . '">Xem tất cả ' . $total_results . ' kết quả tìm kiếm</a>';
+
+    }
+
+    wp_die(); // Kết thúc AJAX request
+}
+
 
 
 

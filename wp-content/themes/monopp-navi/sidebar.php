@@ -73,7 +73,7 @@
                 wp_reset_postdata(); ?>
             </ul>
             <div class="actions-toolbar">
-                <a class="action-links" href="/popular-articles">人気記事一覧へ</a>
+                <a class="action-links" href="/popular/">人気記事一覧へ</a>
             </div>
         </div>
     </div>
