@@ -146,7 +146,7 @@ function quick_search_callback() {
     if (!empty($query)) {
         // Chia giá trị tìm kiếm thành các từ khóa
         $search_terms = explode(' ', $query);
-        $search_terms = array_map('esc_sql', $search_terms);
+        $search_terms = array_map('sanitize_text_field', $search_terms);
 
         // Tạo các điều kiện tìm kiếm
         $conditions = [];
@@ -174,6 +174,7 @@ function quick_search_callback() {
             WHERE ($query_string)
             AND post_status = 'publish'
             AND post_type = 'post'
+            ORDER BY post_date DESC
             LIMIT 6
         ");
 

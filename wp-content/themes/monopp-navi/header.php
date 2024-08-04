@@ -198,7 +198,7 @@
                                 success: function(response) {
                                     $('.results-box').html(response.html); // Hiển thị kết quả trong div.results-box
 
-                                    if (response.count > 2) {
+                                    if (response.count > 6) {
                                         $('.search-link').html(response.link).show(); // Hiển thị liên kết đến trang tìm kiếm nếu có nhiều hơn 2 kết quả
                                     } else {
                                         $('.search-link').hide(); // Ẩn liên kết tìm kiếm nếu ít hơn hoặc bằng 2 kết quả

@@ -173,6 +173,7 @@
         border-radius: 12px;
         opacity: 0;
         visibility: hidden;
+        min-height: 150px;
 
         .loading{
           position: absolute;
@@ -199,7 +200,7 @@
         }
 
         .results-box{
-          max-height: 400px;
+          max-height: 420px;
           overflow: auto;
           padding-right: 10px;
 
