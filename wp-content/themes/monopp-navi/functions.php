@@ -293,10 +293,14 @@ function check_selected_posts_popular() {
 }
 
 
+
+//ajax quick search
+//======================
 add_action('wp_ajax_sort_posts', 'handle_sort_posts');
 add_action('wp_ajax_nopriv_sort_posts', 'handle_sort_posts');
 
 function handle_sort_posts() {
+
     // Get the search query and sorter from the AJAX request
     $search_query = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
     $sorter = isset($_GET['sorter']) ? sanitize_text_field($_GET['sorter']) : 'DESC';
@@ -342,6 +346,7 @@ function handle_sort_posts() {
             'order' => $order,
             'meta_key' => $meta_key,
             'posts_per_page' => -1,
+
         ];
 
         $query = new WP_Query($args);
@@ -385,5 +390,18 @@ function handle_sort_posts() {
 
     wp_die();
 }
+
+function wpse_modify_video_archive_query( $query ) {
+    // Chỉ áp dụng cho vòng lặp chính trên giao diện frontend và khi không phải là trang admin.
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    // Kiểm tra nếu là trang tìm kiếm hoặc trang lưu trữ loại bài viết 'post'.
+    if ( is_search() ) {
+        $query->set( 'posts_per_page', 1 );
+    }
+}
+add_action( 'pre_get_posts', 'wpse_modify_video_archive_query' );
 
 ?>

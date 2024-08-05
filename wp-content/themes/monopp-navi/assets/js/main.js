@@ -192,37 +192,37 @@ jQuery(function ($) {
     });
 
     // Sort search post
-    $('#sorter').on('change', function () {
-        var sorter = $(this).val();
-        var searchQuery = $('#search-box').val();
-        var newUrl = new URL(window.location.href);
-        if (sorter) {
-            newUrl.searchParams.set('sorter', sorter);
-        } else {
-            newUrl.searchParams.delete('sorter'); // Remove sorter parameter if empty
-        }
-        window.history.replaceState(null, '', newUrl);
-
-        $.ajax({
-            url: ajaxurl,
-            type: 'GET',
-            data: {
-                action: 'sort_posts',
-                sorter: sorter,
-                s: searchQuery
-            },
-            beforeSend: function () {
-                var htmlLoading = '<div class="ajax-loading">\n' +
-                    '    <img alt="" src="/wp-content/themes/monopp-navi/assets/images/loader-1.gif">\n' +
-                    '</div>'
-                $(htmlLoading).insertAfter($("#footer"));
-            },
-            success: function (response) {
-                $('#search-results').html(response);
-                $(".ajax-loading").remove();
-            }
-        });
-    });
+    // $('#sorter').on('change', function () {
+    //     var sorter = $(this).val();
+    //     var searchQuery = $('#search-box').val();
+    //     var newUrl = new URL(window.location.href);
+    //     if (sorter) {
+    //         newUrl.searchParams.set('sorter', sorter);
+    //     } else {
+    //         newUrl.searchParams.delete('sorter'); // Remove sorter parameter if empty
+    //     }
+    //     window.history.replaceState(null, '', newUrl);
+    //
+    //     $.ajax({
+    //         url: ajaxurl,
+    //         type: 'GET',
+    //         data: {
+    //             action: 'sort_posts',
+    //             sorter: sorter,
+    //             s: searchQuery
+    //         },
+    //         beforeSend: function () {
+    //             var htmlLoading = '<div class="ajax-loading">\n' +
+    //                 '    <img alt="" src="/wp-content/themes/monopp-navi/assets/images/loader-1.gif">\n' +
+    //                 '</div>'
+    //             $(htmlLoading).insertAfter($("#footer"));
+    //         },
+    //         success: function (response) {
+    //             $('#search-results').html(response);
+    //             $(".ajax-loading").remove();
+    //         }
+    //     });
+    // });
 
 
 });
