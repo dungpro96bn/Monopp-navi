@@ -16,8 +16,13 @@ add_shortcode('homePath', 'homePath');
 
 add_action( 'admin_enqueue_scripts', 'load_admin_style' );
 function load_admin_style() {
-    wp_enqueue_style( 'style-admin', get_template_directory_uri() . '/assets/css/style-admin.css', false, '1.0.0' );
+    wp_enqueue_style( 'style-admin', get_template_directory_uri() . '/assets/css/style-admin.css' );
 }
+
+function my_enqueue($hook) {
+    wp_enqueue_script('script_admin', get_template_directory_uri() . '/assets/js/admin.js');
+}
+add_action('admin_enqueue_scripts', 'my_enqueue');
 
 function enqueue_styles() {
     wp_enqueue_style('style main.min', get_template_directory_uri() . '/assets/css/main.min.css', true, rand());
@@ -227,6 +232,158 @@ function quick_search_callback() {
     }
 
     wp_send_json($response); // Kết thúc AJAX request
+}
+
+
+add_action('wp_ajax_check_selected_posts', 'check_selected_posts');
+
+function check_selected_posts() {
+    global $wpdb;
+
+    // Lấy danh sách ID bài viết từ yêu cầu AJAX
+    $current_post_id = isset($_POST['current_post_id']) ? intval($_POST['current_post_id']) : 0;
+
+    if (!$current_post_id) {
+        wp_send_json(array('error' => 'Invalid post ID'));
+        exit;
+    }
+
+    // Truy vấn bài viết đã được chọn
+    $selected_posts = $wpdb->get_results($wpdb->prepare("
+        SELECT p.ID, p.post_title
+        FROM {$wpdb->posts} p
+        INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+        WHERE pm.meta_key = 'select_this_post_slider'
+          AND pm.meta_value = 'a:1:{i:0;s:3:\"Yes\";}'
+          AND p.ID != %d
+          AND p.post_type = 'post'
+    ", $current_post_id));
+
+    // Trả về dữ liệu dưới dạng JSON
+    wp_send_json($selected_posts);
+}
+
+
+add_action('wp_ajax_check_selected_posts_popular', 'check_selected_posts_popular');
+
+function check_selected_posts_popular() {
+    global $wpdb;
+
+    // Lấy danh sách ID bài viết từ yêu cầu AJAX
+    $current_post_id = isset($_POST['current_post_id']) ? intval($_POST['current_post_id']) : 0;
+
+    if (!$current_post_id) {
+        wp_send_json(array('error' => 'Invalid post ID'));
+        exit;
+    }
+
+    // Truy vấn bài viết đã được chọn
+    $selected_posts = $wpdb->get_results($wpdb->prepare("
+        SELECT p.ID, p.post_title
+        FROM {$wpdb->posts} p
+        INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+        WHERE pm.meta_key = 'select_popular_posts'
+          AND pm.meta_value = 'a:1:{i:0;s:3:\"Yes\";}'
+          AND p.ID != %d
+          AND p.post_type = 'post'
+    ", $current_post_id));
+
+    // Trả về dữ liệu dưới dạng JSON
+    wp_send_json($selected_posts);
+}
+
+
+add_action('wp_ajax_sort_posts', 'handle_sort_posts');
+add_action('wp_ajax_nopriv_sort_posts', 'handle_sort_posts');
+
+function handle_sort_posts() {
+    // Get the search query and sorter from the AJAX request
+    $search_query = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+    $sorter = isset($_GET['sorter']) ? sanitize_text_field($_GET['sorter']) : 'DESC';
+
+    // Prepare the search terms and conditions
+    $search_terms = explode(' ', $search_query);
+    $search_terms = array_map('sanitize_text_field', $search_terms);
+    $search_conditions = [];
+    foreach ($search_terms as $term) {
+        $search_conditions[] = "post_title LIKE '%" . esc_sql($term) . "%'";
+        $search_conditions[] = "post_content LIKE '%" . esc_sql($term) . "%'";
+    }
+    $search_query_string = implode(' OR ', $search_conditions);
+
+    // Query the posts
+    global $wpdb;
+    global $post;
+
+    $sql = "SELECT ID FROM $wpdb->posts WHERE ($search_query_string) AND post_status = 'publish' AND post_type = 'post'";
+    $post_ids = $wpdb->get_col($sql);
+
+    if ($post_ids) {
+        $orderby = 'date';
+        $order = 'DESC';
+        $meta_key = '';
+
+        if ($sorter === 'views') {
+            $orderby = 'meta_value_num';
+            $meta_key = 'post_view';
+        } elseif ($sorter === 'ASC') {
+            $order = 'ASC';
+        } elseif ($sorter === 'DESC') {
+            $order = 'DESC';
+        } elseif ($sorter === ""){
+            $order = 'DESC';
+        }
+
+        $args = [
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'post__in' => $post_ids,
+            'orderby' => $orderby,
+            'order' => $order,
+            'meta_key' => $meta_key,
+            'posts_per_page' => -1,
+        ];
+
+        $query = new WP_Query($args);
+        if ($query->have_posts()) {
+            ob_start(); // Start output buffering
+            ?>
+            <ul class="related-article-list">
+                <?php while ($query->have_posts()): $query->the_post(); ?>
+                    <li class="article-item">
+                        <a class="link-post" href="<?php the_permalink(); ?>">
+                            <p class="image-post">
+                                <?php if (has_post_thumbnail()): ?>
+                                    <img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                                <?php endif; ?>
+                            </p>
+                            <h2 class="title-post"><?php the_title(); ?></h2>
+                        </a>
+                        <div class="info-bottom">
+                            <div class="category">
+                                <?php
+                                $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                                foreach ($country_lists as $country_list) { ?>
+                                    <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
+                                <?php } ?>
+                            </div>
+                            <p class="date-time number"><?php echo esc_html(get_the_date()); ?></p>
+                        </div>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+            <?php
+            wp_reset_postdata();
+            $response = ob_get_clean(); // Get the output and clean the buffer
+            echo $response;
+        } else {
+            echo '<p class="search-results-none en">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>';
+        }
+    } else {
+        echo '<p class="search-results-none en">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>';
+    }
+
+    wp_die();
 }
 
 ?>
