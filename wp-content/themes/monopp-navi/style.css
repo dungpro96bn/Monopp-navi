@@ -265,6 +265,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .inner {
+    width: 100%;
     max-width: 1040px;
     margin: auto;
     padding: 0 20px;

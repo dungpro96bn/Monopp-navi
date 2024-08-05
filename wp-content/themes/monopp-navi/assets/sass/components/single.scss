@@ -51,6 +51,36 @@
   }
 }
 
+#page-404{
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 50vh;
+
+  .not-found-text{
+    color: #2E2E2E;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 1.6px;
+    margin-bottom: 50px;
+  }
+
+  .not-found-button{
+    text-decoration: underline;
+    color: #2E2E2E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 1.6px;
+  }
+}
+
 .heateor_sss_sharing_container{
   margin-bottom: 50px;
 

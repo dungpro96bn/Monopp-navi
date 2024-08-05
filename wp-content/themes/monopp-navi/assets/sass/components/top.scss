@@ -470,8 +470,15 @@
       letter-spacing: 13.2px;
       opacity: 0.05;
       top: 253px;
-      left: -9px;
+      left: 56.5%;
       white-space: nowrap;
+      transform: translateX(-50%);
+
+      @media (max-width: 1400px) {
+        left: -12px;
+        transform: unset;
+      }
+
     }
 
     &.part-time-job{
