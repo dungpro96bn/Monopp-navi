@@ -1,6 +1,6 @@
 <div id="sidebar">
     <div class="sidebar-content">
-        <div class="popular-articles">
+        <div class="popular-articles sidebar-box">
             <h2 class="heading-block">人気記事</h2>
             <ul class="popular-articles-list">
                 <?php
@@ -22,9 +22,11 @@
                     <?php while ( $result->have_posts() ) : $result->the_post(); ?>
                         <li class="popular-articles-item">
                             <a class="link-post" href="<?php the_permalink(); ?>">
-                                <p class="image-post">
-                                    <img src="<?php echo get_the_post_thumbnail_url(); ?>">
-                                </p>
+                                <div class="image-post">
+                                    <p class="img-inner">
+                                        <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                    </p>
+                                </div>
                                 <div class="info">
                                     <h2 class="title-post"><?php echo get_the_title(); ?></h2>
                                     <p class="date-time number"><?php echo get_the_date(); ?></p>
@@ -58,9 +60,11 @@
                         <?php $numberPost = $num++; ?>
                         <li class="popular-articles-item">
                             <a class="link-post" href="<?php the_permalink(); ?>">
-                                <p class="image-post">
-                                    <img src="<?php echo get_the_post_thumbnail_url(); ?>">
-                                </p>
+                                <div class="image-post">
+                                    <p class="img-inner">
+                                        <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                    </p>
+                                </div>
                                 <div class="info">
                                     <h2 class="title-post"><?php echo get_the_title(); ?></h2>
                                     <p class="date-time number"><?php echo get_the_date(); ?></p>
@@ -74,6 +78,23 @@
             </ul>
             <div class="actions-toolbar">
                 <a class="action-links" href="/popular/">人気記事一覧へ</a>
+            </div>
+        </div>
+        <div class="recommended-tags sidebar-box">
+            <h2 class="heading-block">おすすのタグ</h2>
+            <div class="list-tags-post">
+                <?php
+                $args = array(
+                    'taxonomy' => 'post-tags',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                    'orderby' => 'name',
+                    'order' => 'ASC'
+                );
+                $country_lists = get_categories($args);
+                foreach($country_lists as $country_list):?>
+                    <a class="item-tag-post <?php echo $country_list->slug; ?>" href="<?php echo get_category_link( $country_list->term_id ); ?>"><?php echo $country_list->name; ?></a>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

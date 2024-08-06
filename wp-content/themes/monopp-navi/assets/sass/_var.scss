@@ -48,6 +48,10 @@ $bgBlock: #f7f7f7;
       color: #fff;
     }
 
+    @include xs{
+      height: 45px;
+    }
+
   }
 
 }

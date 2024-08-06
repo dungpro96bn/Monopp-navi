@@ -49,7 +49,7 @@ if (!empty($categories)) {
                         <?php
                         $dataValue = get_field('link_options');
                         if( $dataValue == 'https://youtube.com/' ):?>
-                        <div class="search-job">
+                        <div class="search-job search-job">
                             <div class="content-box">
                                 <div class="box-top">
                                     <div class="logo-option">
@@ -69,7 +69,7 @@ if (!empty($categories)) {
                             </div>
                         </div>
                         <?php elseif ($dataValue == "https://facebook.com/"):?>
-                        <div class="search-job">
+                        <div class="search-job register">
                             <div class="content-box">
                                 <div class="box-top">
                                     <div class="logo-option">
@@ -79,12 +79,12 @@ if (!empty($categories)) {
                                         </picture>
                                     </div>
                                     <div class="info">
-                                        <h2 class="title">ものっぷで日本のモノづくりを一緒に支えませんか？</h2>
-                                        <p class="text">ものっぷではさまざまな製造に関する求人を紹介いたします。</p>
+                                        <h2 class="title">ものっぷでは製造に興味があるメンバーを募集中！</h2>
+                                        <p class="text">製造に関するお仕事に興味ありませんか？<br/>「ものっぷ」に登録することで製造に関する求人のご紹介が可能です！</p>
                                     </div>
                                 </div>
                                 <div class="action">
-                                    <a target="_blank" href="<?php echo $dataValue; ?>">ものっぷでお仕事を探す</a>
+                                    <a target="_blank" href="<?php echo $dataValue; ?>">ものっぷへ登録する</a>
                                 </div>
                             </div>
                         </div>

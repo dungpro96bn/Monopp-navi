@@ -23,6 +23,11 @@
   background: #EE6E01;
   color: #fff;
 }
+@media (max-width: 767px) {
+  .actions-toolbar .action-links {
+    height: 45px;
+  }
+}
 
 .ajax-loading {
   position: fixed;
@@ -35,6 +40,54 @@
   z-index: 9;
   top: 0;
   left: 0;
+}
+
+.popup-error {
+  position: fixed;
+  z-index: 999;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 500px;
+  min-height: 220px;
+  transform: translate(-50%, -50%) scale(0.8);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s;
+}
+.popup-error.is-open {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+.popup-error .btn-close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.popup-error .btn-close:hover path {
+  stroke: red;
+  transition: 0.2s;
 }
 
 .wp-pagenavi {
@@ -94,9 +147,22 @@
 .search-results-block .search-wrap {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+}
+.search-results-block .toolbar-title-wrapper {
+  width: 200px;
+}
+.search-results-block .toolbar-title-wrapper #toolbar-amount {
+  color: #2E2E2E;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.search-results-block .toolbar-title-wrapper .toolbar-number {
+  font-weight: 600;
 }
 .search-results-block .search-form {
-  width: calc(100% - 220px);
+  width: calc(100% - 420px);
   padding-right: 30px;
 }
 .search-results-block .search-form label {
@@ -122,6 +188,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
+  color: #2E2E2E;
 }
 .search-results-block .search-form input:focus {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
@@ -131,10 +198,10 @@
   position: relative;
 }
 .search-results-block .sort-by .label-sort {
-  color: #737373;
+  color: #2E2E2E;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   position: absolute;
   top: 10px;
   left: 15px;
@@ -145,14 +212,14 @@
   height: 40px;
   border-radius: 30px;
   padding: 5px 30px 5px 63px;
-  color: #737373;
+  color: #2E2E2E;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-family: Roboto, sans-serif;
   border: 1px solid #e0e0e0;
   background-color: #f3f3f3;
-  background-image: url("data:image/svg+xml,%3Csvg width='13' height='8' viewBox='0 0 13 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.46387 1.27295L6.46387 6.27295L11.4639 1.27295' stroke='%23737373' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+  background-image: url("data:image/svg+xml,%3Csvg width='13' height='8' viewBox='0 0 13 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.46387 1.27295L6.46387 6.27295L11.4639 1.27295' stroke='%232E2E2E' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
   background-size: 14px;
   background-repeat: no-repeat;
   background-position: calc(100% - 12px) 50%;

@@ -94,6 +94,7 @@
         <div class="inner">
             <div class="new-article">
                 <div class="new-article-list">
+                    <h2 class="heading-block"><span>特集記事</span></h2>
                     <ul class="article-list">
                         <?php
                         $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
@@ -274,6 +275,19 @@
             variableWidth: true,
             centerPadding: '0',
             pauseOnHover: false,
+            responsive: [
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        centerMode: false,
+                        variableWidth: false,
+                        centerPadding: false,
+                        adaptiveHeight: true
+                    }
+                }
+            ]
         });
 
         function updateBackground(slideIndex) {

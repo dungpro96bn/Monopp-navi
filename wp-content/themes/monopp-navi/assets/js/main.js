@@ -1,5 +1,3 @@
-
-
 jQuery(function ($) {
 
 
@@ -67,17 +65,11 @@ jQuery(function ($) {
 
     //Open Menu
     $("#header-menu .btn-openMenu").click(function () {
-        $("body").toggleClass("header-open");
-        $("#header-menu .header-megamenu").toggleClass("is-open");
-        $(this).toggleClass("is-open");
-        $("#header-menu").toggleClass("is-openMenu");
+        $("#header-popup").addClass("is-open");
     });
 
-    $(".bg-headerOpen").click(function () {
-        $("body").toggleClass("header-open");
-        $("#header-menu .header-megamenu").toggleClass("is-open");
-        $("#header-menu").toggleClass("is-openMenu");
-        $("#header-menu .btn-openMenu").toggleClass("is-open");
+    $("#header-popup .close-header").click(function () {
+        $("#header-popup").removeClass("is-open");
     });
 
 
@@ -118,7 +110,10 @@ jQuery(function ($) {
 
         $this = $(this);
 
-        $(this).addClass('is-loading');
+        var htmlLoading = '<div class="ajax-loading">\n' +
+            '    <img alt="" src="/wp-content/themes/monopp-navi/assets/images/loader-1.gif">\n' +
+            '</div>'
+        $(htmlLoading).insertAfter($("#footer"));
 
         var link = window.location.href.split('#')[0];
         var urlPage = link + 'page/' + total;
@@ -136,6 +131,7 @@ jQuery(function ($) {
                 if(number >= dataMax){
                     // $this.addClass("is-opacity");
                     $this.parents(".navigation-more").remove();
+                    $(".ajax-loading").remove();
                 }
             }
         });
@@ -184,6 +180,7 @@ jQuery(function ($) {
         $(".searchForm").removeClass("is-active");
         $("body").removeClass("search-focus");
         $(this).hide();
+        $(".popup-error").removeClass("is-open");
     });
 
     $(".search-result-item .category span").click(function () {
@@ -224,5 +221,19 @@ jQuery(function ($) {
     //     });
     // });
 
+
+    $('.search-results-block .search-form').on('submit', function(event) {
+        var searchBox = $(this).find('#search-box').val();
+        if (searchBox.length < 2) {
+            event.preventDefault();
+            $(".popup-error").addClass("is-open");
+            $(".bg-loading-search").show();
+        }
+    });
+
+    $( "body" ).delegate( ".popup-error .btn-close", "click", function() {
+        $(".popup-error").removeClass("is-open");
+        $(".bg-loading-search").hide();
+    });
 
 });

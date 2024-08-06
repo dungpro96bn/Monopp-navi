@@ -2,7 +2,7 @@
 
 
 .bg-loading-search{
-  background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, .2);
   bottom: 0;
   display: none;
   height: 100%;
@@ -60,12 +60,35 @@
     padding: 0 40px;
     height: 64px;
     margin: auto;
+
+    @include md{
+      padding: 0 20px;
+    }
+
+    @include sm{
+
+      padding: 0 12px;
+
+      .right-header{
+        display: none !important;
+      }
+    }
+
   }
 
   .header-logo {
     .link-logo {
       display: flex;
       align-items: center;
+
+      @include xs{
+
+        .logo{
+          max-width: 110px;
+        }
+
+      }
+
     }
 
     .subTitle-logo {
@@ -78,6 +101,17 @@
       line-height: 1.5;
       letter-spacing: 1.1px;
       margin-left: 12px;
+
+      @include md{
+        max-width: 80px;
+        text-align: left;
+      }
+
+      @include xs{
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
     }
   }
 
@@ -146,12 +180,59 @@
     width: 270px;
     margin-left: 68px;
 
+    @include md{
+      margin-left: 0;
+    }
+
+    @include xs{
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 25px;
+      position: relative;
+      width: 90px;
+      align-items: center;
+
+      &:after{
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 32px;
+        background: #D9D9D9;
+        top: 0;
+        left: 48%;
+      }
+
+    }
+
     .searchForm{
       width: 142px;
       position: relative;
 
+      @include xs{
+        width: 32px;
+      }
+
+      .toggle-form{
+        display: none;
+
+        @include xs{
+          display: flex;
+          width: 100%;
+          height: 32px;
+          align-items: center;
+          justify-content: center;
+        }
+
+      }
+
       form{
         position: relative;
+
+        @include xs{
+          display: none;
+          position: absolute;
+        }
+
       }
 
       &.is-active{
@@ -374,7 +455,7 @@
       label{
         display: block;
         position: relative;
-        transition: .3s;
+        transition: .2s;
         width: 100%;
 
         button{
@@ -453,7 +534,6 @@
 
         .title-btnMenu{
           color: #FFF;
-
           text-align: center;
           font-family: "Roboto", sans-serif;
           font-size: 12px;
@@ -461,14 +541,252 @@
           font-weight: 600;
           line-height: 1.5;
           letter-spacing: 1.2px;
+
+          @include xs{
+            display: none;
+          }
+
         }
+
+      @include xs{
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border-radius: 0;
+
+        .icon-btnMenu{
+          rect{
+            fill: #2E2E2E;
+          }
+        }
+
+      }
     }
   }
 
 }
 
 
+#header-popup{
+  position: fixed;
+  top: -100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
 
+  &.is-open{
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  a{
+    color: #fff;
+  }
+
+  .inner{
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .bg-header{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.98;
+    background: #2E2E2E;
+    top: 0;
+    left: 0;
+  }
+
+  .header-content{
+    max-width: 368px;
+    margin: auto;
+  }
+
+  .logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 64px;
+
+    picture{
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .subTitle-logo{
+      color: #FFF;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 1.6px;
+    }
+
+  }
+
+  #menu{
+    margin-bottom: 32px;
+
+    li{
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+      a{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+        padding: 16px 0;
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 1.4px;
+
+        &:after{
+          content: "\f178";
+          position: absolute;
+          font-family: "Font Awesome 6 Pro";
+          font-size: 16.5px;
+          font-weight: 300;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &:hover{
+          color: #EE6E01;
+          transition: .3s;
+
+          &:after{
+
+          }
+
+        }
+
+      }
+    }
+  }
+
+
+  .contact-list{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-bottom: 48px;
+
+    li{
+
+      margin-bottom: 16px;
+
+      &:nth-child(2n){
+        padding-left: 32px;
+      }
+
+      a{
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 1.4px;
+        display: inline-block;
+        position: relative;
+
+        i{
+          font-size: 16.5px;
+          font-weight: 300;
+          margin-left: 9px;
+        }
+
+        &:hover{
+          color: #EE6E01;
+          transition: .3s;
+        }
+
+      }
+    }
+  }
+
+  .social-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 16px;
+    row-gap: 16px;
+
+    circle, rect{
+      transition: .3s;
+    }
+
+    a{
+      display: flex;
+    }
+
+    a:hover{
+      circle{
+        stroke: #EE6E01 !important;
+      }
+
+      rect, path{
+        fill: #EE6E01 !important;
+      }
+    }
+
+  }
+
+  .close-header{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover{
+      svg{
+        path{
+          fill: #EE6E01;
+          transition: .3s;
+        }
+      }
+
+      .txt-close{
+        color: #EE6E01;
+        transition: .3s;
+      }
+
+    }
+
+    svg{
+      margin-bottom: 6px;
+    }
+
+    .txt-close{
+      color: #FFF;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 1.4px;
+    }
+
+  }
+
+}
 
 
 
