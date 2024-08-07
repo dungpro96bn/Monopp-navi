@@ -84,18 +84,41 @@
             <h2 class="heading-block">おすすのタグ</h2>
             <div class="list-tags-post">
                 <?php
-                $args = array(
-                    'taxonomy' => 'post-tags',
-                    'hide_empty' => false,
-                    'parent' => 0,
-                    'orderby' => 'name',
-                    'order' => 'ASC'
-                );
-                $country_lists = get_categories($args);
-                foreach($country_lists as $country_list):?>
-                    <a class="item-tag-post <?php echo $country_list->slug; ?>" href="<?php echo get_category_link( $country_list->term_id ); ?>"><?php echo $country_list->name; ?></a>
-                <?php endforeach; ?>
+                $check_all = get_option('checked_tags_check_all', '');
+                $checked_tags = get_option('checked_tags', array());
+
+                if ($check_all === 'checkAll'):?>
+                    <?php
+                    $tags = get_terms(array(
+                        'taxonomy' => 'post-tags',
+                        'hide_empty' => false,
+                    )); ?>
+                    <?php foreach ($tags as $tag): ?>
+                        <a class="item-tag-post <?php echo $tag->slug; ?>" href="<?php echo get_category_link($tag->term_id); ?>"><?php echo $tag->name; ?></a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <?php
+                    $args = array(
+                        'taxonomy' => 'post-tags',
+                        'hide_empty' => false,
+                        'parent' => 0,
+                        'orderby' => 'name',
+                        'order' => 'ASC',
+                        'meta_query' => array(
+                            array(
+                                'key' => 'display_tags_in_sidebar',
+                                'value' => 'Show',
+                                'compare' => 'LIKE'
+                            )
+                        )
+                    );
+                    $country_lists = get_categories($args);
+                    foreach ($country_lists as $country_list):?>
+                        <a class="item-tag-post <?php echo $country_list->slug; ?>" href="<?php echo get_category_link($country_list->term_id); ?>"><?php echo $country_list->name; ?></a>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
+

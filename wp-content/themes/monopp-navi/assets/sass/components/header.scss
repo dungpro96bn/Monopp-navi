@@ -229,8 +229,21 @@
         position: relative;
 
         @include xs{
-          display: none;
           position: absolute;
+          width: 100vw;
+          right: -70px;
+          top: 10px;
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+          opacity: 0;
+          visibility: hidden;
+          transition: .3s;
+
+          &.is-open{
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 16px);
+          }
+
         }
 
       }
@@ -468,6 +481,11 @@
           left: 16px;
           z-index: 2;
           pointer-events: none;
+
+          @include xs{
+            top: 14px;
+          }
+
         }
 
         .amsearch-loader-block{
@@ -486,6 +504,11 @@
         &.active{
           width: calc(100% + 80px);
           margin-left: -80px;
+
+          @include xs{
+            width: 100%;
+            margin-left: 0;
+          }
 
           input{
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
@@ -508,6 +531,13 @@
         line-height: 1.5;
         letter-spacing: 1.2px;
         padding: 10px 10px 10px 40px;
+
+        @include xs{
+          border-radius: 0;
+          border: 0;
+          height: 46px;
+          padding: 10px 10px 10px 45px;
+        }
 
         &::placeholder{
           color: #A0A0A0;
@@ -693,6 +723,12 @@
 
       &:nth-child(2n){
         padding-left: 32px;
+
+        @include xs{
+          width: 120px;
+          padding-left: 0;
+        }
+
       }
 
       a{
@@ -703,6 +739,10 @@
         letter-spacing: 1.4px;
         display: inline-block;
         position: relative;
+
+        @media (max-width: 350px) {
+          font-size: 12px;
+        }
 
         i{
           font-size: 16.5px;
@@ -784,13 +824,74 @@
       letter-spacing: 1.4px;
     }
 
+    @include xs{
+      width: 32px;
+      height: 32px;
+      right: 24px;
+      top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      svg{
+        width: 18px;
+        height: 18px;
+        margin-bottom: 0;
+
+        path{
+          stroke-width: 2px;
+          stroke: #fff;
+        }
+
+      }
+
+      .txt-close{
+        display: none;
+      }
+
+    }
+
+  }
+
+  @include xs{
+    .logo{
+      margin-bottom: 40px;
+    }
+
+    .contact-list{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 333px;
+    }
+
+    .social-list{
+      padding: 0 35px;
+    }
+
   }
 
 }
 
 
+.admin-bar{
+  #header-popup{
+    &.is-open{
+      top: 32px;
+    }
+  }
+}
 
-
+@media screen and (max-width: 782px) {
+  .admin-bar{
+    #header-popup{
+      &.is-open{
+        top: 46px;
+      }
+    }
+  }
+}
 
 
 

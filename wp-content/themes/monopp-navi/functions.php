@@ -404,4 +404,57 @@ function wpse_modify_video_archive_query( $query ) {
 }
 add_action( 'pre_get_posts', 'wpse_modify_video_archive_query' );
 
+
+// Remove tags support from posts
+function myprefix_unregister_tags() {
+    unregister_taxonomy_for_object_type('post_tag', 'post');
+}
+add_action('init', 'myprefix_unregister_tags');
+
+
+
+//thêm checkbox hiển thị tất cả tags post
+add_action('admin_footer-edit-tags.php', 'add_check_all_checkbox_and_apply_button');
+
+function add_check_all_checkbox_and_apply_button() {
+    if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'post-tags') {
+        ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                var htmlForm = '<div id="custom-checkbox-container">\n' +
+                    '<label><input type="checkbox" id="check-all-tags" name="check_all_tags" value="checkAll"> Show All Tags</label>\n' +
+                    '<div class="button-checkAll"><input type="submit" name="apply_checked_tags" class="button" value="Apply"></div>\n' +
+                    '</div>';
+
+                $(htmlForm).insertBefore($("#col-right #posts-filter .wp-list-table"));
+
+                var checkAll = '<?php echo get_option('checked_tags_check_all', ''); ?>';
+                if (checkAll === 'checkAll') {
+                    $('#check-all-tags').prop('checked', true);
+                }
+            });
+        </script>
+        <?php
+    }
+}
+
+
+add_action('admin_init', 'handle_apply_checked_tags');
+
+function handle_apply_checked_tags() {
+    if (isset($_POST['apply_checked_tags'])) {
+        // Lưu trạng thái của checkbox "Check All"
+        $check_all_value = isset($_POST['check_all_tags']) ? sanitize_text_field($_POST['check_all_tags']) : '';
+
+        // Lưu trạng thái của các tags đã chọn
+        $checked_tags = isset($_POST['tags']) ? $_POST['tags'] : array();
+
+        // Lưu cả giá trị của checkbox "Check All" và các tags đã chọn
+        update_option('checked_tags_check_all', $check_all_value);
+        update_option('checked_tags', $checked_tags);
+    }
+}
+
+
+
 ?>

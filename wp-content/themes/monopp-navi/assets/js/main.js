@@ -72,6 +72,19 @@ jQuery(function ($) {
         $("#header-popup").removeClass("is-open");
     });
 
+    $(".searchForm .toggle-form").on("click", function () {
+        var check = $("body");
+        if(check.hasClass("search-focus")){
+            $(this).next().toggleClass("is-open");
+            $("body").removeClass("search-focus");
+            $(".bg-loading-search").hide();
+        } else {
+            $(this).next().toggleClass("is-open");
+            $("body").addClass("search-focus");
+            $(".bg-loading-search").show();
+        }
+    });
+
 
     // Scroll header
     $(window).scroll( function(){
@@ -181,6 +194,7 @@ jQuery(function ($) {
         $("body").removeClass("search-focus");
         $(this).hide();
         $(".popup-error").removeClass("is-open");
+        $(".searchForm form").toggleClass("is-open");
     });
 
     $(".search-result-item .category span").click(function () {

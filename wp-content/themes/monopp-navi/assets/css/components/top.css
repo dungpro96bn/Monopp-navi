@@ -919,7 +919,7 @@
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 1.6px;
-  margin-bottom: 9px;
+  margin-bottom: 12px;
 }
 @media (max-width: 1023px) {
   .feature-article .feature-article-list .factory-column-item .title-post {

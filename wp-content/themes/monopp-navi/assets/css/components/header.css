@@ -231,8 +231,19 @@
 }
 @media (max-width: 767px) {
   #header-menu .header-action-right .searchForm form {
-    display: none;
     position: absolute;
+    width: 100vw;
+    right: -70px;
+    top: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  #header-menu .header-action-right .searchForm form.is-open {
+    opacity: 1;
+    visibility: visible;
+    top: calc(100% + 16px);
   }
 }
 #header-menu .header-action-right .searchForm.is-active .results-form {
@@ -417,6 +428,11 @@
   z-index: 2;
   pointer-events: none;
 }
+@media (max-width: 767px) {
+  #header-menu .header-action-right .searchForm label button {
+    top: 14px;
+  }
+}
 #header-menu .header-action-right .searchForm label .amsearch-loader-block {
   position: absolute;
   background: url("data:image/gif;base64,R0lGODlhEAALAPQAAP///wAAANra2tDQ0Orq6gYGBgAAAC4uLoKCgmBgYLq6uiIiIkpKSoqKimRkZL6+viYmJgQEBE5OTubm5tjY2PT09Dg4ONzc3PLy8ra2tqCgoMrKyu7u7gAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA") no-repeat center;
@@ -432,6 +448,12 @@
 #header-menu .header-action-right .searchForm label.active {
   width: calc(100% + 80px);
   margin-left: -80px;
+}
+@media (max-width: 767px) {
+  #header-menu .header-action-right .searchForm label.active {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 #header-menu .header-action-right .searchForm label.active input {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
@@ -450,6 +472,14 @@
   line-height: 1.5;
   letter-spacing: 1.2px;
   padding: 10px 10px 10px 40px;
+}
+@media (max-width: 767px) {
+  #header-menu .header-action-right .searchForm input {
+    border-radius: 0;
+    border: 0;
+    height: 46px;
+    padding: 10px 10px 10px 45px;
+  }
 }
 #header-menu .header-action-right .searchForm input::placeholder {
   color: #A0A0A0;
@@ -602,6 +632,12 @@
 #header-popup .contact-list li:nth-child(2n) {
   padding-left: 32px;
 }
+@media (max-width: 767px) {
+  #header-popup .contact-list li:nth-child(2n) {
+    width: 120px;
+    padding-left: 0;
+  }
+}
 #header-popup .contact-list li a {
   color: #FFF;
   font-size: 14px;
@@ -610,6 +646,11 @@
   letter-spacing: 1.4px;
   display: inline-block;
   position: relative;
+}
+@media (max-width: 350px) {
+  #header-popup .contact-list li a {
+    font-size: 12px;
+  }
 }
 #header-popup .contact-list li a i {
   font-size: 16.5px;
@@ -667,4 +708,52 @@
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 1.4px;
+}
+@media (max-width: 767px) {
+  #header-popup .close-header {
+    width: 32px;
+    height: 32px;
+    right: 24px;
+    top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  #header-popup .close-header svg {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 0;
+  }
+  #header-popup .close-header svg path {
+    stroke-width: 2px;
+    stroke: #fff;
+  }
+  #header-popup .close-header .txt-close {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  #header-popup .logo {
+    margin-bottom: 40px;
+  }
+  #header-popup .contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 333px;
+  }
+  #header-popup .social-list {
+    padding: 0 35px;
+  }
+}
+
+.admin-bar #header-popup.is-open {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar #header-popup.is-open {
+    top: 46px;
+  }
 }

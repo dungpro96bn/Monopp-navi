@@ -292,6 +292,10 @@ body.search-focus footer{
     filter: blur(4px);
 }
 
+#wpadminbar{
+    position: fixed !important;
+}
+
 
 @media (max-width: 767px) {
 

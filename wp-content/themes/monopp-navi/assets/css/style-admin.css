@@ -117,3 +117,26 @@
     margin-bottom: 0;
 }
 
+#custom-checkbox-container{
+    margin-top: 43px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    column-gap: 39px;
+    border: 1px solid #c3c4c7;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #fff;
+}
+#custom-checkbox-container label{
+    cursor: pointer;
+}
+#custom-checkbox-container *{
+    box-sizing: border-box;
+}
+.button-checkAll{
+
+}
