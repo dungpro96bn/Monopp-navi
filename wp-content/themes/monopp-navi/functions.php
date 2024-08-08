@@ -190,9 +190,10 @@ function quick_search_callback() {
             foreach ($results as $post) {
                 // Lấy thông tin bài viết
                 $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'thumbnail');
-                $categories = get_the_category($post->ID);
-                $cat_name = !empty($categories) ? $categories[0]->cat_name : 'Chưa có danh mục';
-                $cat_link = !empty($categories) ? get_category_link($categories[0]->term_id) : '#';
+                //$categories = get_the_category($post->ID);
+                $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                $cat_name = !empty($country_lists) ? $country_lists[0]->name : 'Chưa có danh mục';
+                $cat_link = !empty($country_lists) ? get_category_link($country_lists[0]->term_id) : '#';
                 $post_date = get_the_date('', $post->ID);
 
                 // Tạo HTML cho kết quả
