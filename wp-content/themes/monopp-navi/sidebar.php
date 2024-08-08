@@ -94,7 +94,7 @@
                         'hide_empty' => false,
                     )); ?>
                     <?php foreach ($tags as $tag): ?>
-                        <a class="item-tag-post <?php echo $tag->slug; ?>" href="<?php echo get_category_link($tag->term_id); ?>"><?php echo $tag->name; ?></a>
+                        <a class="item-tag-post <?php echo $tag->slug; ?>" href="<?php echo get_category_link($tag->term_id); ?>"># <?php echo $tag->name; ?></a>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <?php
@@ -114,7 +114,7 @@
                     );
                     $country_lists = get_categories($args);
                     foreach ($country_lists as $country_list):?>
-                        <a class="item-tag-post <?php echo $country_list->slug; ?>" href="<?php echo get_category_link($country_list->term_id); ?>"><?php echo $country_list->name; ?></a>
+                        <a class="item-tag-post <?php echo $country_list->slug; ?>" href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>

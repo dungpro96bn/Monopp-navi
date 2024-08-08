@@ -108,7 +108,7 @@
                             </a>
                         </li>
                         <li class="footer-nav-item">
-                            <a href="#">
+                            <a href="/sitemap/">
                                 <span>サイトマップ</span>
                             </a>
                         </li>

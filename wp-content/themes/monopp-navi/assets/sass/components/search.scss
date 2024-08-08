@@ -68,17 +68,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  column-gap: 10px;
+  column-gap: 8px;
   margin-top: 60px;
+  row-gap: 12px;
 
   span{
-    width: 36px;
+    width: 26px;
     height: 36px;
     padding: 0;
     margin: 0;
-    border-radius: 50%;
+    border-radius: 2px;
     border: 0 !important;
-    background-color: #ed6d00;
+    background-color: #EE6E01;
     color: #fff;
     display: flex;
     align-items: center;
@@ -87,17 +88,36 @@
     line-height: 1.5;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+
+    &.extend{
+      border: 1px solid #ddd !important;
+      width: 34px;
+      background: #fff;
+      color: #B2B2B2;
+      font-size: 20px;
+    }
+
+    &.pages{
+      color: #2E2E2E;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5;
+      background: transparent;
+      width: auto;
+      margin-right: 16px;
+    }
+
   }
 
   a{
-    width: 36px;
+    width: 26px;
     height: 36px;
     padding: 0;
     margin: 0;
-    border-radius: 50%;
-    border: 0 !important;
-    background-color: #f3f3f3;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #EE6E01;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,8 +125,20 @@
     line-height: 1.5;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
-    text-decoration: none;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+    border: 1px solid #EE6E01 !important;
+
+    &.nextpostslink,
+    &.previouspostslink{
+      width: 32px;
+    }
+
+    &.last,
+    &.first{
+      width: auto;
+      padding: 0 8px;
+      column-gap: 8px;
+      font-family: "LINE Seed JP_OTF";
+    }
 
     &:hover{
       background: #ed6d00;

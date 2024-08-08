@@ -4,6 +4,8 @@
 #breadcrumb{
   background: rgba(0, 0, 0, 0.50);
   padding: 6.5px 0;
+  position: relative;
+  z-index: 9;
 
   ol{
     display: flex;
@@ -49,6 +51,11 @@
       }
     }
   }
+
+  @include xs{
+    background: #7f6d60;
+  }
+
 }
 
 #page-404{
@@ -84,10 +91,19 @@
 .heateor_sss_sharing_container{
   margin-bottom: 50px;
 
+  @include xs{
+    padding: 0 8px;
+    margin-bottom: 42px;
+  }
+
   .heateor_sss_sharing_ul{
     display: grid;
     grid-template-columns: repeat(5,1fr);
     column-gap: 10px;
+
+    @include xs{
+      column-gap: 7px;
+    }
 
     a{
       margin: 0 !important;
@@ -97,6 +113,11 @@
 
     .heateor_sss_svg{
       width: 100% !important;
+
+      @include xs{
+        height: 30px !important;
+      }
+
     }
   }
 }
@@ -167,6 +188,60 @@
 
   }
 
+  @include sm{
+    .header-info{
+      .heading{
+        font-size: 26px;
+        letter-spacing: 2px;
+      }
+    }
+  }
+
+  @include xs{
+
+    margin-top: 0;
+    margin-bottom: 88px;
+
+    .header-info{
+      width: 100%;
+      order: 2;
+      padding-right: 0;
+
+      .heading{
+        font-size: 20px;
+        margin-bottom: 9px;
+        margin-right: -2px;
+      }
+
+      .info-bottom{
+        .category {
+          a{
+            font-size: 14px;
+            letter-spacing: 1.4px;
+          }
+        }
+
+        .date-time{
+          font-size: 14px;
+          padding-right: 0;
+        }
+
+      }
+
+    }
+
+    .header-image{
+      width: calc(100% + 24px);
+      order: 1;
+      margin-left: -12px;
+      margin-right: -12px;
+      border-radius: 0;
+      margin-bottom: 24px;
+    }
+
+  }
+
+
 }
 
 .single-post{
@@ -174,15 +249,25 @@
 
   .bg-post{
     position: absolute;
-    width: calc(100% + 80px);
+    width: 100%;
     height: 770px;
     top: -90px;
-    left: -40px;
+    left: 0;
     background-position: top;
     background-size: cover;
     filter: blur(17px);
     opacity: .4;
     pointer-events: none;
+
+    @include xs{
+      top: 0;
+      height: 550px;
+      width: 1200px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 1200px;
+    }
+
   }
 
   .inner{
@@ -196,7 +281,16 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding-bottom: 80px;
+  padding-bottom: 112px;
+
+  @include xs{
+    background: #f7f7f7;
+    position: relative;
+    z-index: 9;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 0 12px 80px;
+  }
 
   .main-content{
     width: calc(100% - 288px);
@@ -208,6 +302,28 @@
       padding: 40px;
       box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .15);
       min-height: 100vh;
+    }
+
+    @include sm{
+      width: 66%;
+      padding-right: 25px;
+
+      .single-box{
+        padding: 30px 20px;
+      }
+    }
+
+    @include xs{
+      width: 100%;
+      padding-right: 0;
+      margin-top: -49px;
+      margin-bottom: 80px;
+
+      .single-box{
+        border-radius: 12px;
+        padding: 26px 16px 40px;
+      }
+
     }
 
     .single-body{
@@ -367,6 +483,21 @@
         }
       }
 
+      @include xs{
+
+        padding: 24px 20px;
+
+        .heading-table{
+          .toc_title{
+            font-size: 20px;
+            letter-spacing: 2px;
+            column-gap: 8px;
+            padding-right: 8px;
+          }
+
+        }
+
+      }
 
     }
 
@@ -516,6 +647,66 @@
       }
     }
 
+    @include sm{
+      padding: 20px;
+
+      .box-top{
+
+        .logo-option{
+          width: 120px;
+        }
+
+        .info{
+          width: calc(100% - 120px);
+
+          .title{
+            font-size: 18px;
+          }
+
+        }
+
+      }
+
+    }
+
+    @include xs{
+
+      padding: 32px 20px;
+
+      .box-top{
+
+        .logo-option{
+          width: 100%;
+          text-align: center;
+          margin-bottom: 24px;
+
+          img{
+            max-width: 155px;
+          }
+        }
+
+        .info{
+          width: 100%;
+          padding-left: 0;
+
+          .title{
+            letter-spacing: 0.36px;
+            text-align: center;
+            margin-bottom: 12px;
+          }
+
+        }
+
+      }
+
+      .action{
+        a{
+          font-size: 18px;
+        }
+      }
+
+    }
+
   }
 
 }
@@ -525,6 +716,10 @@
   background: #fff;
   padding-top: 80px;
   padding-bottom: 93px;
+
+  @include xs{
+    padding-bottom: 120px;
+  }
 
   .heading{
     color: #2E2E2E;
@@ -550,6 +745,28 @@
       transform: translateX(-50%);
     }
 
+    @include sm{
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
+
+  }
+
+  @include xs{
+    padding-top: 40px;
+
+    .heading{
+      font-size: 24px;
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+
+      &:after{
+        width: 40px;
+        height: 4px;
+      }
+
+    }
+
   }
 
 }
@@ -559,6 +776,51 @@
   grid-template-columns: repeat(3,1fr);
   column-gap: 32px;
   row-gap: 48px;
+
+  &.article-col-2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 40px;
+
+    @include sm{
+      column-gap: 15px;
+
+      .article-item{
+        .title-post{
+          font-size: 14px;
+        }
+      }
+
+    }
+
+    @media (max-width: 550px) {
+
+      grid-template-columns: repeat(1, 1fr);
+
+      .article-item{
+        .title-post{
+          font-size: 16px;
+          letter-spacing: 1.6px;
+        }
+      }
+
+    }
+
+  }
+
+  @include sm{
+    column-gap: 15px;
+  }
+
+  @include xs{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  @media(max-width: 550px) {
+    grid-template-columns: repeat(1,1fr);
+    row-gap: 40px;
+  }
 
   .article-item{
 
@@ -607,7 +869,7 @@
       display: grid;
       grid-template-columns: repeat(2,1fr);
       column-gap: 20px;
-      align-items: center;
+      //align-items: center;
 
       .category{
         a{
@@ -620,6 +882,12 @@
           &:hover{
             text-decoration: underline;
           }
+
+          @include xs{
+            font-size: 14px;
+            letter-spacing: 1.4px;
+          }
+
         }
       }
 
@@ -629,6 +897,11 @@
         font-weight: 700;
         line-height: 1.5;
         text-align: right;
+
+        @include xs{
+          font-size: 14px;
+        }
+
       }
 
     }
@@ -712,3 +985,9 @@
 }
 
 
+@include xs{
+  .single-page{
+    position: relative;
+    overflow: hidden;
+  }
+}

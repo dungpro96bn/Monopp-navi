@@ -190,11 +190,17 @@ jQuery(function ($) {
     });
 
     $(".bg-loading-search").click(function () {
+
+        var checkWidth = $(window).width();
+        if(checkWidth < 768){
+            $(".searchForm form").removeClass("is-open");
+        }
+
         $(".searchForm").removeClass("is-active");
         $("body").removeClass("search-focus");
         $(this).hide();
         $(".popup-error").removeClass("is-open");
-        $(".searchForm form").toggleClass("is-open");
+        $(".searchForm form").removeClass("is-open");
     });
 
     $(".search-result-item .category span").click(function () {

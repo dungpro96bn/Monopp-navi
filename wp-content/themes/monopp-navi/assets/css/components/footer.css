@@ -96,6 +96,7 @@
   padding-bottom: 64px;
   padding-top: 64px;
   position: relative;
+  z-index: 12;
 }
 #footer a {
   color: #fff;

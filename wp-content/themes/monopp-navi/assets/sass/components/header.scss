@@ -242,6 +242,7 @@
             opacity: 1;
             visibility: visible;
             top: calc(100% + 16px);
+            box-shadow: unset;
           }
 
         }
@@ -253,6 +254,16 @@
           opacity: 1;
           visibility: visible;
         }
+
+        @include xs{
+          form{
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 16px);
+            box-shadow: unset;
+          }
+        }
+
       }
 
       .results-form{
@@ -268,6 +279,14 @@
         opacity: 0;
         visibility: hidden;
         min-height: 150px;
+
+        @include xs{
+          top: calc(100% + 62px);
+          right: -70px;
+          border-radius: 0;
+          box-shadow: unset;
+          padding: 30px 11px 25px 16px;
+        }
 
         .loading{
           position: absolute;
@@ -297,6 +316,11 @@
           max-height: 420px;
           overflow: auto;
           padding-right: 10px;
+
+          @include xs{
+            padding-right: 5px;
+            max-height: 350px;
+          }
 
           &::-webkit-scrollbar {
             width: 7px;
@@ -371,6 +395,10 @@
           .image-post{
             width: 30%;
 
+            @include xs{
+              width: 34%;
+            }
+
             a{
               display: block;
 
@@ -404,6 +432,12 @@
           .info{
             width: 70%;
             padding-left: 20px;
+
+            @include xs{
+              width: 66%;
+              padding-left: 12px;
+            }
+
           }
 
           .title-post{
@@ -416,6 +450,10 @@
               line-height: 1.5;
               letter-spacing: 1.6px;
               margin-bottom: 12px;
+
+              @include xs{
+                font-size: 13px;
+              }
 
               &:hover{
                 text-decoration: underline;
@@ -445,6 +483,12 @@
               position: relative;
               z-index: 5;
 
+              @include xs{
+                font-size: 10px;
+                text-indent: -13px;
+                padding-left: 13px;
+              }
+
               &:hover{
                 text-decoration: underline;
               }
@@ -458,6 +502,11 @@
             font-weight: 700;
             line-height: 1.5;
             text-align: right;
+
+            @include xs{
+              font-size: 10px;
+            }
+
           }
 
         }
@@ -512,6 +561,11 @@
 
           input{
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+
+            @include xs{
+              box-shadow: unset;
+            }
+
           }
         }
 
@@ -534,7 +588,8 @@
 
         @include xs{
           border-radius: 0;
-          border: 0;
+          border-left: 0;
+          border-right: 0;
           height: 46px;
           padding: 10px 10px 10px 45px;
         }

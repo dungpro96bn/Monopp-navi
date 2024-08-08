@@ -179,7 +179,7 @@
                         <a href="#"><span>お問い合わせ</span><i class="fa-solid fa-arrow-right-long"></i></a>
                     </li>
                     <li class="link-item">
-                        <a href="#"><span>サイトマップ</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                        <a href="/sitemap/"><span>サイトマップ</span><i class="fa-solid fa-arrow-right-long"></i></a>
                     </li>
                     <li class="link-item">
                         <a href="#"><span>運営会社</span><i class="fa-solid fa-arrow-right-long"></i></a>
