@@ -140,6 +140,10 @@
       justify-content: space-between;
       column-gap: 20px;
 
+      .category{
+        display: flex;
+      }
+
       a{
         color: #51A940;
         font-size: 14px;
@@ -389,7 +393,7 @@
         .info-bottom{
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
+          //align-items: center;
           justify-content: space-between;
 
           a{
@@ -1089,7 +1093,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: center;
+        //align-items: center;
 
         a{
           color: #51A940;

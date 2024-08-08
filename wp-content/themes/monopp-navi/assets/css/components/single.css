@@ -40,6 +40,12 @@
   flex-wrap: wrap;
   column-gap: 32px;
 }
+@media (max-width: 767px) {
+  #breadcrumb ol {
+    display: block;
+    overflow: hidden;
+  }
+}
 #breadcrumb ol li {
   color: #FFF;
   font-size: 13px;
@@ -59,8 +65,22 @@
   top: 5.5px;
   right: -20px;
 }
+@media (max-width: 767px) {
+  #breadcrumb ol li:after {
+    top: 4px;
+    right: -17px;
+  }
+}
 #breadcrumb ol li:last-child:after {
   display: none;
+}
+@media (max-width: 767px) {
+  #breadcrumb ol li {
+    font-size: 11px;
+    letter-spacing: 1.1px;
+    display: inline;
+    margin-right: 24px;
+  }
 }
 #breadcrumb ol a {
   color: #FFF;
@@ -72,6 +92,12 @@
 }
 #breadcrumb ol a:hover {
   text-decoration: underline;
+}
+@media (max-width: 767px) {
+  #breadcrumb ol a {
+    font-size: 11px;
+    letter-spacing: 1.1px;
+  }
 }
 @media (max-width: 767px) {
   #breadcrumb {
@@ -500,36 +526,37 @@
 .single-main .main-content .table-of-contents li a:hover {
   text-decoration: underline;
 }
-.single-main .search-job {
+
+.search-job {
   border-radius: 12px;
   border: 2px solid #ED6D00;
   background: #FFFEF2;
   padding: 32px;
   margin-top: 40px;
 }
-.single-main .search-job.register {
+.search-job.register {
   border-color: #51A940;
 }
-.single-main .search-job.register .box-top .info .title {
+.search-job.register .box-top .info .title {
   color: #51A940;
 }
-.single-main .search-job.register .action a {
+.search-job.register .action a {
   background: linear-gradient(90deg, #51A940 0%, #FFD12E 100%);
 }
-.single-main .search-job .box-top {
+.search-job .box-top {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 24px;
 }
-.single-main .search-job .box-top .logo-option {
+.search-job .box-top .logo-option {
   width: 190px;
 }
-.single-main .search-job .box-top .info {
+.search-job .box-top .info {
   width: calc(100% - 190px);
   padding-left: 17px;
 }
-.single-main .search-job .box-top .info .title {
+.search-job .box-top .info .title {
   color: #EE6E01;
   font-size: 20px;
   font-weight: 700;
@@ -537,14 +564,14 @@
   letter-spacing: 0.4px;
   margin-bottom: 8px;
 }
-.single-main .search-job .box-top .info .text {
+.search-job .box-top .info .text {
   color: #2E2E2E;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.28px;
 }
-.single-main .search-job .action a {
+.search-job .action a {
   border-radius: 40px;
   background: linear-gradient(90deg, #ED6D00 0%, #FFD12E 100%);
   display: flex;
@@ -561,46 +588,48 @@
   letter-spacing: 2px;
   transition: 0.3s;
 }
-.single-main .search-job .action a:hover {
+.search-job .action a:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 @media (max-width: 1023px) {
-  .single-main .search-job {
+  .search-job {
     padding: 20px;
   }
-  .single-main .search-job .box-top .logo-option {
+  .search-job .box-top .logo-option {
     width: 120px;
   }
-  .single-main .search-job .box-top .info {
+  .search-job .box-top .info {
     width: calc(100% - 120px);
   }
-  .single-main .search-job .box-top .info .title {
+  .search-job .box-top .info .title {
     font-size: 18px;
   }
 }
 @media (max-width: 767px) {
-  .single-main .search-job {
+  .search-job {
     padding: 32px 20px;
   }
-  .single-main .search-job .box-top .logo-option {
+  .search-job .box-top .logo-option {
     width: 100%;
     text-align: center;
     margin-bottom: 24px;
   }
-  .single-main .search-job .box-top .logo-option img {
+  .search-job .box-top .logo-option img {
     max-width: 155px;
   }
-  .single-main .search-job .box-top .info {
+  .search-job .box-top .info {
     width: 100%;
     padding-left: 0;
   }
-  .single-main .search-job .box-top .info .title {
+  .search-job .box-top .info .title {
     letter-spacing: 0.36px;
     text-align: center;
     margin-bottom: 12px;
+    padding: 0 5px;
   }
-  .single-main .search-job .action a {
+  .search-job .action a {
     font-size: 18px;
+    letter-spacing: 1.8px;
   }
 }
 
@@ -741,6 +770,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 20px;
+}
+.related-article-list .article-item .info-bottom .category {
+  display: flex;
 }
 .related-article-list .article-item .info-bottom .category a {
   color: #51A940;

@@ -192,7 +192,7 @@ jQuery(function ($) {
     $(".bg-loading-search").click(function () {
 
         var checkWidth = $(window).width();
-        if(checkWidth < 768){
+        if(checkWidth < 769){
             $(".searchForm form").removeClass("is-open");
         }
 
@@ -255,5 +255,11 @@ jQuery(function ($) {
         $(".popup-error").removeClass("is-open");
         $(".bg-loading-search").hide();
     });
+
+    $(".page-item .link-page.toggle").on('click', function () {
+        $(this).find("i").toggleClass("fa-minus");
+        $(this).find("i").toggleClass("fa-plus");
+        $(".tags-post-list").slideToggle(300);
+    })
 
 });

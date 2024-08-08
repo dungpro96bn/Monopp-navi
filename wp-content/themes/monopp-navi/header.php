@@ -173,16 +173,16 @@
                 </div>
                 <ul class="contact-list">
                    <li class="link-item">
-                       <a href="#"><span>ものっぷナビについて</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                       <a href="/about/"><span>ものっぷナビについて</span><i class="fa-solid fa-arrow-right-long"></i></a>
                    </li>
                     <li class="link-item">
-                        <a href="#"><span>お問い合わせ</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                        <a target="_blank" href="https://www.hirayama-global-support.com/hirayamastaff/contact/"><span>お問い合わせ</span><i class="fa-solid fa-arrow-right-long"></i></a>
                     </li>
                     <li class="link-item">
                         <a href="/sitemap/"><span>サイトマップ</span><i class="fa-solid fa-arrow-right-long"></i></a>
                     </li>
                     <li class="link-item">
-                        <a href="#"><span>運営会社</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                        <a target="_blank" href="https://www.hirayamastaff.co.jp/#info"><span>運営会社</span><i class="fa-solid fa-arrow-right-long"></i></a>
                     </li>
                 </ul>
                 <ul class="social-list">

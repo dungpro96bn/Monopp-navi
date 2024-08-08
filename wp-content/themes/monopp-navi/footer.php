@@ -103,7 +103,7 @@
                 <nav class="footer-menu-nav">
                     <ul class="footer-nav-list">
                         <li class="footer-nav-item">
-                            <a href="#">
+                            <a href="/about/">
                                 <span>ものっぷナビについて</span>
                             </a>
                         </li>
@@ -113,12 +113,12 @@
                             </a>
                         </li>
                         <li class="footer-nav-item">
-                            <a href="#">
-                                <span>お問合わせ</span>
+                            <a target="_blank" href="https://www.hirayama-global-support.com/hirayamastaff/contact/">
+                                <span>お問い合わせ</span>
                             </a>
                         </li>
                         <li class="footer-nav-item">
-                            <a href="#">
+                            <a target="_blank" href="https://www.hirayamastaff.co.jp/#info">
                                 <span>運営会社</span>
                             </a>
                         </li>
