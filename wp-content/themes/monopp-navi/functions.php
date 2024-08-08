@@ -16,8 +16,13 @@ add_shortcode('homePath', 'homePath');
 
 add_action( 'admin_enqueue_scripts', 'load_admin_style' );
 function load_admin_style() {
-    wp_enqueue_style( 'style-admin', get_template_directory_uri() . '/assets/css/style-admin.css' );
+    wp_enqueue_style( 'style-admin', get_template_directory_uri() . '/assets/css/style-admin.css', true, rand() );
 }
+
+function my_custom_login_stylesheet() {
+    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/assets/css/login-admin.css', true, rand() );
+}
+add_action( 'login_enqueue_scripts', 'my_custom_login_stylesheet' );
 
 function my_enqueue($hook) {
     wp_enqueue_script('script_admin', get_template_directory_uri() . '/assets/js/admin.js');
