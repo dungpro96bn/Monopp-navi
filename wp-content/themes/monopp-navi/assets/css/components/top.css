@@ -437,7 +437,7 @@
   text-align: center;
   padding-bottom: 13px;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 #sidebar .heading-block:after {
   content: "";
@@ -453,7 +453,7 @@
 #sidebar .popular-articles .popular-articles-item {
   position: relative;
   border-bottom: 1px solid #E7E7E7;
-  padding: 20px 0;
+  padding: 16px 0;
 }
 #sidebar .popular-articles .popular-articles-item:last-child {
   border-bottom: 0;
@@ -465,9 +465,8 @@
   font-style: italic;
   font-weight: 900;
   line-height: 1.5;
-  top: -6px;
-  right: -6px;
-  display: none;
+  bottom: 6px;
+  right: 0;
 }
 #sidebar .popular-articles .popular-articles-item .link-post {
   display: flex;
