@@ -519,7 +519,13 @@
         display: block;
         position: relative;
         transition: .2s;
-        width: 100%;
+        width: calc(100% + 20px);
+        margin-left: -20px;
+
+        @include xs{
+          width: 100%;
+          margin-left: 0;
+        }
 
         button{
           //content: "";
