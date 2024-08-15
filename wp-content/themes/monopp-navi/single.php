@@ -48,7 +48,7 @@ if (!empty($categories)) {
                         </div>
                         <?php
                         $dataValue = get_field('link_options');
-                        if( $dataValue == 'https://youtube.com/' ):?>
+                        if( $dataValue == 'https://monoppu.com' ):?>
                         <div class="search-job search-job">
                             <div class="content-box">
                                 <div class="box-top">
@@ -68,7 +68,7 @@ if (!empty($categories)) {
                                 </div>
                             </div>
                         </div>
-                        <?php elseif ($dataValue == "https://facebook.com/"):?>
+                        <?php elseif ($dataValue == "https://monoppu.com/register"):?>
                         <div class="search-job register">
                             <div class="content-box">
                                 <div class="box-top">

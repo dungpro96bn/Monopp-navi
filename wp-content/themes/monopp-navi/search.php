@@ -99,7 +99,7 @@ $sort_by = isset($_GET['sorter']) ? sanitize_text_field($_GET['sorter']) : 'DESC
                         </div>
                         <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
                             <label class="control">
-                                <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('サイト内検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s"/>
+                                <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('フリーワード検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s"/>
                                 <button>
                                     <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="6.87435" cy="7.33772" r="5.37435" stroke="#A0A0A0" stroke-width="3"/>
@@ -174,7 +174,7 @@ $sort_by = isset($_GET['sorter']) ? sanitize_text_field($_GET['sorter']) : 'DESC
                         </div>
                         <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
                             <label class="control">
-                                <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('サイト内検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s"/>
+                                <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('フリーワード検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s"/>
                                 <button>
                                     <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="6.87435" cy="7.33772" r="5.37435" stroke="#A0A0A0" stroke-width="3"/>
