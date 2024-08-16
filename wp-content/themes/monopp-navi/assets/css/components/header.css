@@ -272,6 +272,13 @@
   opacity: 0;
   visibility: hidden;
   min-height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#header-menu .header-action-right .searchForm .results-form .search-link {
+  width: 100%;
 }
 @media (max-width: 767px) {
   #header-menu .header-action-right .searchForm .results-form {
@@ -308,6 +315,7 @@
   max-height: 420px;
   overflow: auto;
   padding-right: 10px;
+  width: 100%;
 }
 @media (max-width: 767px) {
   #header-menu .header-action-right .searchForm .results-form .results-box {

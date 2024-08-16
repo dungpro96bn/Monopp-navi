@@ -334,6 +334,7 @@
   .single-main .main-content .single-box {
     border-radius: 12px;
     padding: 26px 16px 40px;
+    min-height: 300px;
   }
 }
 .single-main .main-content .single-body h2 {

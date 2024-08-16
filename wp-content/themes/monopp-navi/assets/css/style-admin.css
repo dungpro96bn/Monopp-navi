@@ -137,6 +137,6 @@
 #custom-checkbox-container *{
     box-sizing: border-box;
 }
-.button-checkAll{
-
+.ac-post .wrap table td.column-post_view{
+    padding-left: 36px;
 }
