@@ -65,25 +65,29 @@ jQuery(function ($) {
 
     //Open Menu
     $("#header-menu .btn-openMenu").click(function () {
-        $("#header-popup").addClass("is-open");
+        $("#header-popup").addClass("is-open").addClass("is-menu");
+    });
+
+    $(".header-action-right .searchForm form, .searchForm .toggle-form").click(function () {
+        $("#header-popup").addClass("is-open").addClass("is-search");
     });
 
     $("#header-popup .close-header").click(function () {
-        $("#header-popup").removeClass("is-open");
+        $("#header-popup").removeClass("is-open").removeClass("is-menu").removeClass("is-search");
     });
 
-    $(".searchForm .toggle-form").on("click", function () {
-        var check = $("body");
-        if(check.hasClass("search-focus")){
-            $(this).next().toggleClass("is-open");
-            $("body").removeClass("search-focus");
-            $(".bg-loading-search").hide();
-        } else {
-            $(this).next().toggleClass("is-open");
-            $("body").addClass("search-focus");
-            $(".bg-loading-search").show();
-        }
-    });
+    // $(".searchForm .toggle-form").on("click", function () {
+    //     var check = $("body");
+    //     if(check.hasClass("search-focus")){
+    //         $(this).next().toggleClass("is-open");
+    //         $("body").removeClass("search-focus");
+    //         $(".bg-loading-search").hide();
+    //     } else {
+    //         $(this).next().toggleClass("is-open");
+    //         $("body").addClass("search-focus");
+    //         $(".bg-loading-search").show();
+    //     }
+    // });
 
 
     // Scroll header

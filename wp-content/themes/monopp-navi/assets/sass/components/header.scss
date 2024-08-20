@@ -89,6 +89,14 @@
 
       }
 
+      @media (max-width: 370px) {
+
+        .logo{
+          max-width: 100px;
+        }
+        
+      }
+
     }
 
     .subTitle-logo {
@@ -103,13 +111,23 @@
       margin-left: 12px;
 
       @include md{
-        max-width: 80px;
+        max-width: 110px;
         text-align: left;
       }
 
       @include xs{
         font-size: 11px;
         line-height: 1.25;
+        margin-left: 12px;
+        max-width: 110px;
+      }
+      
+      @media (max-width: 370px) {
+        font-size: 10px;
+        line-height: 1.25;
+        margin-left: 8px;
+        max-width: 90px;
+        padding-top: 4px;
       }
 
     }
@@ -181,7 +199,7 @@
     margin-left: 68px;
 
     @include md{
-      margin-left: 0;
+      margin-left: 15px;
     }
 
     @include xs{
@@ -191,6 +209,7 @@
       position: relative;
       width: 90px;
       align-items: center;
+      margin-left: 0;
 
       &:after{
         content: "";
@@ -227,6 +246,9 @@
 
       form{
         position: relative;
+        width: calc(100% + 20px);
+        margin-left: -20px;
+        cursor: pointer;
 
         @include xs{
           position: absolute;
@@ -528,8 +550,9 @@
         display: block;
         position: relative;
         transition: .2s;
-        width: calc(100% + 20px);
-        margin-left: -20px;
+        //width: calc(100% + 20px);
+        //margin-left: -20px;
+        pointer-events: none;
 
         @include xs{
           width: 100%;
@@ -601,6 +624,7 @@
         line-height: 1.5;
         letter-spacing: 1.2px;
         padding: 10px 10px 10px 40px;
+        pointer-events: none;
 
         @include xs{
           border-radius: 0;
@@ -714,7 +738,144 @@
   .header-content{
     max-width: 368px;
     margin: auto;
+    display: none;
   }
+
+  &.is-menu{
+    .header-content{
+      display: block;
+    }
+  }
+
+  .search-popup{
+    max-width: 368px;
+    margin: auto;
+    display: none;
+    padding: 20px 0 0;
+
+    .title-search{
+      color: #FFF;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 3.2px;
+      position: relative;
+      text-align: center;
+      padding-bottom: 12px;
+      margin-bottom: 40px;
+
+      &:after{
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background: #fff;
+        border-radius: 10px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      @include xs{
+        font-size: 24px;
+        letter-spacing: 2.4px;
+        padding-bottom: 20px;
+
+        &:after{
+          width: 40px;
+        }
+
+      }
+
+    }
+
+    .heading-block{
+      color: #FFF;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 2px;
+      position: relative;
+      text-align: center;
+      padding-bottom: 14px;
+      margin-bottom: 8px;
+
+      &:after{
+        content: "";
+        position: absolute;
+        width: 34px;
+        height: 2px;
+        background: #fff;
+        border-radius: 6px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+    }
+
+    .search-wp{
+      margin-bottom: 64px;
+
+      @include xs{
+        margin-bottom: 48px;
+      }
+
+    }
+
+    .popular-articles-list{
+      padding-bottom: 20px;
+      max-height: 58vh;
+      overflow: auto;
+
+      @include xs{
+        max-height: 62vh;
+        overflow: auto;
+      }
+
+    }
+
+    .search-form{
+      label{
+        position: relative;
+      }
+
+      button{
+        position: absolute;
+        top: 12px;
+        left: 17px;
+      }
+
+      input{
+        border-radius: 30px;
+        border: 1px solid #E0E0E0;
+        background: #F3F3F3;
+        height: 40px;
+        padding: 5px 10px 5px 44px;
+        font-family: "LINE Seed JP_OTF";
+        font-size: 16px;
+
+        &::placeholder{
+          color: #A0A0A0;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 150%;
+        }
+
+      }
+    }
+
+  }
+
+  &.is-search{
+    .search-popup{
+      display: block;
+    }
+  }
+
 
   .logo{
     display: flex;
@@ -744,6 +905,28 @@
     li{
       width: 100%;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+      &:last-child{
+        a{
+          &:after{
+            content: "";
+            position: relative;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Crect y='0.5' width='16' height='16' fill='url(%23pattern0_332_14103)'/%3E%3Cdefs%3E%3Cpattern id='pattern0_332_14103' patternContentUnits='objectBoundingBox' width='1' height='1'%3E%3Cuse xlink:href='%23image0_332_14103' transform='scale(0.03125)'/%3E%3C/pattern%3E%3Cimage id='image0_332_14103' width='32' height='32' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAACPSURBVFhH7ZfRCoAgDEXd/390KWTEhnCnixldn6edHbuWUpKHJD+/uAGOOiKgpY62zncBegdeG93gsgEC0MB/DXhjp+uHMYw+4Uag+wNEvVzTBgiQbmA1Zq0BJFHma4hMQuCWAd7eAt3E/UekDwik22fN7HwC0AANGAPe+JlcXzcedJ19AFDi6Dr33TAa4ATIF9whxZ0PLwAAAABJRU5ErkJggg=='/%3E%3C/defs%3E%3C/svg%3E%0A");
+            width: 16px;
+            height: 17px;
+            top: 9px;
+            right: -8px;
+            display: inline-block;
+          }
+
+          &:hover{
+            &:after{
+
+            }
+          }
+
+        }
+      }
 
       a{
         display: flex;
@@ -819,6 +1002,7 @@
           font-size: 16.5px;
           font-weight: 300;
           margin-left: 9px;
+          display: none;
         }
 
         &:hover{

@@ -450,117 +450,6 @@
   left: 50%;
   transform: translateX(-50%);
 }
-#sidebar .popular-articles .popular-articles-item {
-  position: relative;
-  border-bottom: 1px solid #E7E7E7;
-  padding: 16px 0;
-}
-#sidebar .popular-articles .popular-articles-item:last-child {
-  border-bottom: 0;
-}
-#sidebar .popular-articles .popular-articles-item .number-post {
-  position: absolute;
-  color: #F0F0F0;
-  font-size: 34px;
-  font-style: italic;
-  font-weight: 900;
-  line-height: 1.5;
-  bottom: 6px;
-  right: 0;
-}
-#sidebar .popular-articles .popular-articles-item .link-post {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  position: relative;
-  z-index: 2;
-}
-#sidebar .popular-articles .popular-articles-item .link-post:hover .title-post {
-  text-decoration: underline;
-}
-#sidebar .popular-articles .popular-articles-item .info {
-  width: calc(100% - 64px);
-  padding-left: 12px;
-}
-#sidebar .popular-articles .popular-articles-item .info .title-post {
-  color: #2E2E2E;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 1.4px;
-  margin-bottom: 4px;
-}
-@media (max-width: 1023px) {
-  #sidebar .popular-articles .popular-articles-item .info .title-post {
-    font-size: 12px;
-  }
-}
-#sidebar .popular-articles .popular-articles-item .info .date-time {
-  color: #B2B2B2;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-#sidebar .popular-articles .popular-articles-item .image-post {
-  width: 64px;
-  height: 64px;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-}
-#sidebar .popular-articles .popular-articles-item .image-post .img-inner {
-  height: 100%;
-}
-#sidebar .popular-articles .popular-articles-item .image-post img {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 100%;
-}
-@media (max-width: 767px) {
-  #sidebar .popular-articles .popular-articles-item {
-    padding: 16px 0;
-  }
-  #sidebar .popular-articles .popular-articles-item .image-post {
-    width: 20%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  #sidebar .popular-articles .popular-articles-item .image-post .img-inner {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding-bottom: 100%;
-  }
-  #sidebar .popular-articles .popular-articles-item .image-post img {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  #sidebar .popular-articles .popular-articles-item .info {
-    width: 80%;
-  }
-  #sidebar .popular-articles .popular-articles-item .info .title-post {
-    font-size: 14px;
-  }
-}
-#sidebar .popular-articles .popular-articles-list {
-  margin-bottom: 5px;
-}
-@media (max-width: 767px) {
-  #sidebar .popular-articles .popular-articles-list {
-    margin-bottom: 16px;
-  }
-}
-#sidebar .popular-articles .actions-toolbar .action-links {
-  height: 42px;
-}
-@media (max-width: 767px) {
-  #sidebar .popular-articles .actions-toolbar .action-links {
-    font-size: 12px;
-  }
-}
 #sidebar .recommended-tags .heading-block {
   margin-bottom: 24px;
 }
@@ -991,4 +880,122 @@
 }
 .feature-article .feature-article-list.part-time-list .factory-column-item:nth-child(5) {
   order: 5;
+}
+
+.popular-articles .popular-articles-item {
+  position: relative;
+  border-bottom: 1px solid #E7E7E7;
+  padding: 16px 0;
+}
+.popular-articles .popular-articles-item:last-child {
+  border-bottom: 0;
+}
+.popular-articles .popular-articles-item .number-post {
+  position: absolute;
+  color: #F0F0F0;
+  font-size: 34px;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.5;
+  bottom: 6px;
+  right: 0;
+}
+.popular-articles .popular-articles-item .number-post.color-w {
+  color: rgba(240, 240, 240, 0.1);
+}
+.popular-articles .popular-articles-item .link-post {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+.popular-articles .popular-articles-item .link-post:hover .title-post {
+  text-decoration: underline;
+}
+.popular-articles .popular-articles-item .info {
+  width: calc(100% - 64px);
+  padding-left: 12px;
+}
+.popular-articles .popular-articles-item .info .title-post {
+  color: #2E2E2E;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1.4px;
+  margin-bottom: 4px;
+}
+.popular-articles .popular-articles-item .info .title-post.color-w {
+  color: #fff;
+}
+@media (max-width: 1023px) {
+  .popular-articles .popular-articles-item .info .title-post {
+    font-size: 12px;
+  }
+}
+.popular-articles .popular-articles-item .info .date-time {
+  color: #B2B2B2;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.popular-articles .popular-articles-item .image-post {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.popular-articles .popular-articles-item .image-post .img-inner {
+  height: 100%;
+}
+.popular-articles .popular-articles-item .image-post img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 767px) {
+  .popular-articles .popular-articles-item {
+    padding: 16px 0;
+  }
+  .popular-articles .popular-articles-item .image-post {
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .popular-articles .popular-articles-item .image-post .img-inner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 100%;
+  }
+  .popular-articles .popular-articles-item .image-post img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .popular-articles .popular-articles-item .info {
+    width: 80%;
+  }
+  .popular-articles .popular-articles-item .info .title-post {
+    font-size: 14px;
+  }
+}
+.popular-articles .popular-articles-list {
+  margin-bottom: 5px;
+}
+@media (max-width: 767px) {
+  .popular-articles .popular-articles-list {
+    margin-bottom: 16px;
+  }
+}
+.popular-articles .actions-toolbar .action-links {
+  height: 42px;
+}
+@media (max-width: 767px) {
+  .popular-articles .actions-toolbar .action-links {
+    font-size: 12px;
+  }
 }

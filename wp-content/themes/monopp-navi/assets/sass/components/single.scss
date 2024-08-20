@@ -351,6 +351,44 @@
 
     }
 
+    .share-title{
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      &:after{
+        content: "";
+        position: absolute;
+        width: calc(100% - 20px);
+        height: 1px;
+        background: #E7E7E7;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+
+      .icon{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 4px;
+        background: #fff;
+        position: relative;
+        z-index: 1;
+        padding-right: 8px;
+      }
+
+      span{
+        color: #B2B2B2;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 2;
+      }
+
+    }
+
     .single-body{
 
       h2{

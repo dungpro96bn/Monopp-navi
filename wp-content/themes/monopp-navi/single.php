@@ -44,6 +44,14 @@ if (!empty($categories)) {
                 <div class="main-content">
                     <div class="single-box">
                         <div class="single-body">
+                            <div class="share-title">
+                                <div class="icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22.96 9.15L13.11 2V5.52C5.39 6.59 2 11.75 2 21.2H3.03C3.35 19.43 3.76 18.54 4.58 17.07C6.36 13.89 9.82 12.95 13.11 12.58V16.3L22.96 9.15Z" fill="#B2B2B2"/>
+                                    </svg>
+                                    <span>記事をシェアする</span>
+                                </div>
+                            </div>
                             <?php the_content(); ?>
                         </div>
                         <?php
@@ -80,11 +88,11 @@ if (!empty($categories)) {
                                     </div>
                                     <div class="info">
                                         <h2 class="title">ものっぷでは製造に興味があるメンバーを募集中！</h2>
-                                        <p class="text">製造に関するお仕事に興味ありませんか？<br/>「ものっぷ」に登録することで製造に関する求人のご紹介が可能です！</p>
+                                        <p class="text">製造系のお仕事にご興味がある⽅は、まずはカンタン応募/登録へ！<br/>⼀⼈ひとりに担当がついてご希望などをヒアリングして、あなたに合ったお仕事をご紹介します。</p>
                                     </div>
                                 </div>
                                 <div class="action">
-                                    <a target="_blank" href="<?php echo $dataValue; ?>">ものっぷへ登録する</a>
+                                    <a target="_blank" href="<?php echo $dataValue; ?>">カンタン応募/登録する</a>
                                 </div>
                             </div>
                         </div>

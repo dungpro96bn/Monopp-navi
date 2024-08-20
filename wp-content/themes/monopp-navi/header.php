@@ -97,7 +97,7 @@
                             <source srcset="<?php bloginfo('template_directory'); ?>/assets/images/logo.svg">
                             <img class="sizes" src="<?php bloginfo('template_directory'); ?>/assets/images/logo.svg" alt="<?php bloginfo('name'); ?>">
                         </picture>
-                        <span class="subTitle-logo">製造・福祉の情報メディア</span>
+                        <span class="subTitle-logo">製造・工場系求人の情報メディア</span>
                     </a>
                 </div><!-- .header-logo -->
                 <div class="right-header header-megamenu">
@@ -159,7 +159,7 @@
                         <source srcset="<?php bloginfo('template_directory'); ?>/assets/images/logo-popup.svg">
                         <img class="sizes" src="<?php bloginfo('template_directory'); ?>/assets/images/logo-popup.svg" alt="<?php bloginfo('name'); ?>">
                     </picture>
-                    <span class="subTitle-logo">製造・福祉の情報メディア</span>
+                    <span class="subTitle-logo">製造・工場系求人の情報メディア</span>
                 </div>
                 <div id="menu">
                     <?php wp_nav_menu(
@@ -235,6 +235,100 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+            <div class="search-popup">
+                <h2 class="title-search">フリーワード検索</h2>
+                <div class="search-wp">
+                    <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+                        <label class="control">
+                            <input type="search" id="search-box" placeholder="<?php echo esc_attr_x('フリーワード検索', 'placeholder'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+                            <button>
+                                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="6.87435" cy="7.33772" r="5.37435" stroke="#A0A0A0" stroke-width="3"/>
+                                    <rect x="11.0796" y="10.0928" width="7.77743" height="2.74974" transform="rotate(45 11.0796 10.0928)" fill="#A0A0A0"/>
+                                </svg>
+                            </button>
+                            <div class="amsearch-loader-block"></div>
+                        </label>
+                    </form>
+                </div>
+                <div class="popular-articles sidebar-box">
+                    <h2 class="heading-block">人気記事</h2>
+                    <ul class="popular-articles-list">
+                        <?php
+                        $args = array(
+                            'post_type'      => 'post',
+                            'post_status'    => 'publish',
+                            'order'         => 'DESC',
+                            'posts_per_page' => 1,
+                            'meta_query'     => array(
+                                array(
+                                    'key'     => 'select_popular_posts',
+                                    'value'   => 'Yes',
+                                    'compare' => 'LIKE'
+                                )
+                            ),
+                        );
+                        $result = new WP_Query( $args );
+                        if ( $result-> have_posts() ) : ?>
+                            <?php while ( $result->have_posts() ) : $result->the_post(); ?>
+                                <li class="popular-articles-item">
+                                    <a class="link-post" href="<?php the_permalink(); ?>">
+                                        <div class="image-post">
+                                            <p class="img-inner">
+                                                <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                            </p>
+                                        </div>
+                                        <div class="info">
+                                            <h2 class="title-post color-w"><?php echo get_the_title(); ?></h2>
+                                            <p class="date-time number"><?php echo get_the_date(); ?></p>
+                                        </div>
+                                    </a>
+                                    <span class="number-post en color-w">01</span>
+                                </li>
+                            <?php endwhile;?>
+                        <?php endif;
+                        $idSelect = 0;
+                        if ($result->have_posts()) {
+                            $result->the_post();
+                            $idSelect = get_the_ID();
+                        }
+                        wp_reset_postdata(); ?>
+
+                        <?php
+                        $args = array(
+                            'post_type'      => 'post',
+                            'post_status'    => 'publish',
+                            'post__not_in'   => array($idSelect),
+                            'meta_key'       => 'post_view',
+                            'orderby'       => 'meta_value_num',
+                            'order'         => 'DESC',
+                            'posts_per_page' => 4,
+                        );
+                        $result = new WP_Query( $args );
+                        $num = 2;
+                        if ( $result-> have_posts() ) : ?>
+                            <?php while ( $result->have_posts() ) : $result->the_post(); ?>
+                                <?php $numberPost = $num++; ?>
+                                <li class="popular-articles-item">
+                                    <a class="link-post" href="<?php the_permalink(); ?>">
+                                        <div class="image-post">
+                                            <p class="img-inner">
+                                                <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                            </p>
+                                        </div>
+                                        <div class="info">
+                                            <h2 class="title-post color-w"><?php echo get_the_title(); ?></h2>
+                                            <p class="date-time number"><?php echo get_the_date(); ?></p>
+                                        </div>
+                                    </a>
+                                    <span class="number-post en color-w"><?php echo "0".$numberPost; ?></span>
+                                </li>
+                            <?php endwhile;?>
+                        <?php endif;
+                        wp_reset_postdata(); ?>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="bg-header"></div>
