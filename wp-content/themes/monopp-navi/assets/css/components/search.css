@@ -279,8 +279,10 @@
 }
 @media (max-width: 767px) {
   .search-results-block {
-    padding: 16px 15px;
+    padding: 16px 12px;
     margin-bottom: 40px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
 }
 
