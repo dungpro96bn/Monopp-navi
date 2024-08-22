@@ -140,3 +140,12 @@
 .ac-post .wrap table td.column-post_view{
     padding-left: 36px;
 }
+
+.editor-styles-wrapper .is-layout-flex{
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+}
+.wp-block-image .components-resizable-box__container{
+    width: 100% !important;
+}
