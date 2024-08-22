@@ -26,6 +26,10 @@
       letter-spacing: 1.3px;
       position: relative;
 
+      &.breadcrumb-item-article{
+        display: none;
+      }
+
       &:after{
         content: "";
         position: absolute;

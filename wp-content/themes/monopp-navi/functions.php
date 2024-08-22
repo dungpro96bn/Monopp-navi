@@ -84,7 +84,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 					$str.='<li><a href="'. get_category_link($ancestor).'">'. get_cat_name($ancestor). '</a></li>';
 				}
 			}
-			$str.='<li><a href="'. get_category_link($cat -> term_id). '">'. $cat-> cat_name . '</a></li>';
+			$str.='<li class=breadcrumb-item-'. $cat-> slug .'><a href="'. get_category_link($cat -> term_id). '">'. $cat-> cat_name . '</a></li>';
 			$str.= '<li>'. $post -> post_title .'</li>';
 		} elseif(is_page()){
 			if($post -> post_parent != 0 ){

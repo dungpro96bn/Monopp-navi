@@ -2269,6 +2269,9 @@
   letter-spacing: 1.3px;
   position: relative;
 }
+#breadcrumb ol li.breadcrumb-item-article {
+  display: none;
+}
 #breadcrumb ol li:after {
   content: "";
   position: absolute;
