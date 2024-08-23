@@ -74,7 +74,11 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 					$str.='<li><a href="'. get_category_link($ancestor) .'">'. get_cat_name($ancestor) .'</a></li>';
 				}
 			}
-			$str.='<li>'. $cat -> name . '</li>';
+			if($cat -> slug == "factory-column" || $cat -> slug == "part-time-job"){
+                $str.='<li><a href="/feature/">特集記事</a></li><li>'. $cat -> name . '</li>';
+            } else{
+                $str.='<li>'. $cat -> name . '</li>';
+            }
 		} elseif(is_single()){
 			$categories = get_the_category($post->ID);
 			$cat = $categories[0];
@@ -106,7 +110,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 				$str.='<li>'. get_query_var('year') .'年</li>';
 			}
 		} elseif(is_search()) {
-			$str.='<li>「'. get_search_query() .'」で検索した結果</li>';
+			$str.='<li>“'. get_search_query() .'” で検索した結果</li>';
 		} elseif(is_author()){
 			$str .='<li>投稿者 : '. get_the_author_meta('display_name', get_query_var('author')).'</li>';
 		} elseif(is_tag()){

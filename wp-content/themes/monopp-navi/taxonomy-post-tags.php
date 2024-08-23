@@ -13,6 +13,7 @@ if ($category && isset($category->name)) {
                 <li>
                     <a href="<?php echo home_url(); ?>">TOP</a></i>
                 </li>
+                <li>おすすめタグ</li>
                 <li><?php echo get_queried_object()->name; ?></li>
             </ol>
         </div>
@@ -24,7 +25,7 @@ if ($category && isset($category->name)) {
                 <div class="main-content">
                     <div id="archive" class="new-container">
                         <div class="related-article">
-                            <h2 class="heading"><?php echo $category_name; ?></h2>
+                            <h2 class="heading"># <?php echo $category_name; ?></h2>
                             <?php
                             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
                             $terms_id = get_queried_object()->term_id;

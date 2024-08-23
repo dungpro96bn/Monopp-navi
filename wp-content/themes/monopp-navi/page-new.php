@@ -21,8 +21,8 @@ endif;
                             'post_type' => 'post',
                             'post_status' => 'publish',
                             'order' => 'DESC',
-                            'paged' => $paged,
-                            'posts_per_page' => 10,
+                            'orderby' => 'modified',
+                            'posts_per_page' => 6,
                         );
                         $result = new WP_Query($args);
                         if ($result->have_posts()) : ?>
@@ -42,7 +42,7 @@ endif;
                                                 <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
                                             <?php } ?>
                                         </div>
-                                        <p class="date-time number"><?php echo get_the_date(); ?></p>
+                                        <p class="date-time number"><?php echo get_the_modified_date(); ?></p>
                                     </div>
                                 </li>
                             <?php endwhile; ?>
@@ -50,7 +50,7 @@ endif;
                         wp_reset_postdata(); ?>
                     </ul>
                     <?php if ($result->max_num_pages > 1): ?>
-                    <?php echo wp_pagenavi(['query' => $result]); ?>
+<!--                    --><?php //echo wp_pagenavi(['query' => $result]); ?>
 <!--                        <div class="navigation-more">-->
 <!--                            <a class="btn-load-navigation ttl-en" data-after-load="1" data-max="--><?php //echo $result->max_num_pages; ?><!--" href="#">Load More</a>-->
 <!--                        </div>-->

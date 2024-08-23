@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="recommended-tags sidebar-box">
-            <h2 class="heading-block">おすすのタグ</h2>
+            <h2 class="heading-block">おすすめタグ</h2>
             <div class="list-tags-post">
                 <?php
                 $check_all = get_option('checked_tags_check_all', '');

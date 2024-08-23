@@ -201,7 +201,7 @@ $sort_by = isset($_GET['sorter']) ? sanitize_text_field($_GET['sorter']) : 'DESC
                             </div>
                         </div>
                         <div class="search-results-message">
-                            <p class="search-results-none en">Your search returned no results. Please contact us with your question by phone at 888-8888-8888 or submit your question by email to demo@monoppu.com</p>
+                            <p class="search-results-none">該当する記事はありません。</p>
                         </div>
 
                     <?php endif; ?>
