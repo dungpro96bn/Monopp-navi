@@ -46,7 +46,7 @@ $sort_by = isset($_GET['sorter']) ? sanitize_text_field($_GET['sorter']) : 'DESC
                     $search_conditions = [];
                     foreach ($search_terms as $term) {
                         $search_conditions[] = "post_title LIKE '%" . esc_sql($term) . "%'";
-                        $search_conditions[] = "post_content LIKE '%" . esc_sql($term) . "%'";
+//                        $search_conditions[] = "post_content LIKE '%" . esc_sql($term) . "%'";
                     }
 
                     // Kết hợp các điều kiện với OR

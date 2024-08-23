@@ -166,7 +166,7 @@ function quick_search_callback() {
         $conditions = [];
         foreach ($search_terms as $term) {
             $conditions[] = $wpdb->prepare("post_title LIKE %s", '%' . $wpdb->esc_like($term) . '%');
-            $conditions[] = $wpdb->prepare("post_content LIKE %s", '%' . $wpdb->esc_like($term) . '%');
+//            $conditions[] = $wpdb->prepare("post_content LIKE %s", '%' . $wpdb->esc_like($term) . '%');
         }
 
         // Kết hợp các điều kiện
@@ -321,7 +321,7 @@ function handle_sort_posts() {
     $search_conditions = [];
     foreach ($search_terms as $term) {
         $search_conditions[] = "post_title LIKE '%" . esc_sql($term) . "%'";
-        $search_conditions[] = "post_content LIKE '%" . esc_sql($term) . "%'";
+//        $search_conditions[] = "post_content LIKE '%" . esc_sql($term) . "%'";
     }
     $search_query_string = implode(' OR ', $search_conditions);
 
