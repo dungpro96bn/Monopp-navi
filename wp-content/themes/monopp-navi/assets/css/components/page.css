@@ -79,6 +79,9 @@
     padding-bottom: 0;
   }
 }
+#article-page .related-article .action-feature {
+  margin-top: 60px;
+}
 #article-page .related-article h3.title {
   color: #2e2e2e;
   font-size: 26px;

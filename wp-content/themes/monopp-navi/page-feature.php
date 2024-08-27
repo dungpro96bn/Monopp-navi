@@ -58,11 +58,14 @@ endif;
                         <?php endif;
                         wp_reset_postdata(); ?>
                     </ul>
-                    <?php if ($result->max_num_pages > 1): ?>
-                            <div class="navigation-more">
-                                <a class="btn-load-navigation ttl-en" data-after-load="1" data-max="<?php echo $result->max_num_pages; ?>" href="#">Load More</a>
-                            </div>
-                    <?php endif; ?>
+<!--                    --><?php //if ($result->max_num_pages > 1): ?>
+<!--                            <div class="navigation-more">-->
+<!--                                <a class="btn-load-navigation ttl-en" data-after-load="1" data-max="--><?php //echo $result->max_num_pages; ?><!--" href="#">Load More</a>-->
+<!--                            </div>-->
+<!--                    --><?php //endif; ?>
+                    <div class="actions-toolbar action-feature">
+                        <a class="action-links" href="/category/factory-column/">もっと見る</a>
+                    </div>
                 </div>
 
                 <div class="related-article part-time-job">
@@ -110,11 +113,14 @@ endif;
                         <?php endif;
                         wp_reset_postdata(); ?>
                     </ul>
-                    <?php if ($result->max_num_pages > 1): ?>
-                        <div class="navigation-more">
-                            <a class="btn-load-navigation ttl-en" data-after-load="1" data-max="<?php echo $result->max_num_pages; ?>" href="#">Load More</a>
-                        </div>
-                    <?php endif; ?>
+                    <div class="actions-toolbar action-feature">
+                        <a class="action-links" href="/category/part-time-job/">もっと見る</a>
+                    </div>
+<!--                    --><?php //if ($result->max_num_pages > 1): ?>
+<!--                        <div class="navigation-more">-->
+<!--                            <a class="btn-load-navigation ttl-en" data-after-load="1" data-max="--><?php //echo $result->max_num_pages; ?><!--" href="#">Load More</a>-->
+<!--                        </div>-->
+<!--                    --><?php //endif; ?>
                 </div>
 
             </div>
