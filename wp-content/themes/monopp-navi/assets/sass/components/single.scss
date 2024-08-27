@@ -988,6 +988,10 @@
   justify-content: center;
   margin-top: 80px;
 
+  @include xs{
+    margin-top: 60px;
+  }
+
   a{
     position: relative;
     border-radius: 40px;

@@ -33,6 +33,60 @@
 
   .related-article{
     background: $bgBlock;
+
+    &.factory-column{
+      margin-bottom: 100px;
+
+      @include xs{
+        margin-bottom: 80px;
+
+        .heading{
+          margin-bottom: 50px;
+        }
+      }
+
+    }
+
+    &.part-time-job{
+      padding-bottom: 40px;
+
+      @include xs{
+        padding-bottom: 0;
+      }
+
+    }
+
+    h3.title{
+      color: #2e2e2e;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 3.2px;
+      position: relative;
+      text-align: center;
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+
+      @include xs{
+        font-size: 16px;
+        margin-bottom: 30px;
+        padding-bottom: 0;
+      }
+
+    }
+
+    .heading{
+      span{
+        display: block;
+      }
+
+      .t2{
+        font-size: 20px;
+      }
+
+    }
+
   }
 
   .single-main{

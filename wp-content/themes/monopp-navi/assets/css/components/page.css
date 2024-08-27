@@ -60,6 +60,50 @@
 #article-page .related-article {
   background: #f7f7f7;
 }
+#article-page .related-article.factory-column {
+  margin-bottom: 100px;
+}
+@media (max-width: 767px) {
+  #article-page .related-article.factory-column {
+    margin-bottom: 80px;
+  }
+  #article-page .related-article.factory-column .heading {
+    margin-bottom: 50px;
+  }
+}
+#article-page .related-article.part-time-job {
+  padding-bottom: 40px;
+}
+@media (max-width: 767px) {
+  #article-page .related-article.part-time-job {
+    padding-bottom: 0;
+  }
+}
+#article-page .related-article h3.title {
+  color: #2e2e2e;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 3.2px;
+  position: relative;
+  text-align: center;
+  padding-bottom: 12px;
+  margin-bottom: 30px;
+}
+@media (max-width: 767px) {
+  #article-page .related-article h3.title {
+    font-size: 16px;
+    margin-bottom: 30px;
+    padding-bottom: 0;
+  }
+}
+#article-page .related-article .heading span {
+  display: block;
+}
+#article-page .related-article .heading .t2 {
+  font-size: 20px;
+}
 #article-page .single-main {
   background: transparent;
 }

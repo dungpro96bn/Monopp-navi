@@ -142,7 +142,7 @@ jQuery(function ($) {
                 var thisHtml =  $(data).find('.related-article-list');
                 thisHtml.each(function(){
                     var a = $(this).html();
-                    $('.related-article-list').append(a);
+                    $this.parents('.related-article').find('.related-article-list').append(a);
                 });
                 $(".navigation-more a").removeClass('is-loading');
                 if(number >= dataMax){

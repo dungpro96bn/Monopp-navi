@@ -846,6 +846,11 @@
   justify-content: center;
   margin-top: 80px;
 }
+@media (max-width: 767px) {
+  .navigation-more {
+    margin-top: 60px;
+  }
+}
 .navigation-more a {
   position: relative;
   border-radius: 40px;
