@@ -146,8 +146,8 @@
                 <ul class="feature-article-list">
                     <li class="factory-column-item title-item">
                         <div class="info-inner">
-                            <h3 class="title">工場コラム</h3>
-                            <p class="text">説明テキストが入ります。説明テキストが入ります。説明テキストが入ります。説明テキストが入ります。</p>
+                            <h3 class="title"><?php the_field('title_factory_column'); ?></h3>
+                            <div class="text"><?php the_field('description_factory_column'); ?></div>
                             <span class="number-block">#1</span>
                         </div>
                     </li>
@@ -201,8 +201,8 @@
                 <ul class="feature-article-list part-time-list">
                     <li class="factory-column-item title-item">
                         <div class="info-inner">
-                            <h3 class="title">パート・アルバイトコラム</h3>
-                            <p class="text">説明テキストが入ります。説明テキストが入ります。説明テキストが入ります。説明テキストが入ります。</p>
+                            <h3 class="title"><?php the_field('title_part_time_job'); ?></h3>
+                            <div class="text"><?php the_field('description_part_time_job'); ?></div>
                             <span class="number-block">#2</span>
                         </div>
                     </li>

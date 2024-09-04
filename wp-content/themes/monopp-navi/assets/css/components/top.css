@@ -489,6 +489,22 @@
   padding-top: 80px;
   overflow: hidden;
 }
+.feature-article.feature-article-category {
+  background: transparent;
+  padding-top: 0;
+}
+.feature-article.feature-article-category .feature-article-col {
+  margin-bottom: 0;
+}
+.feature-article.feature-article-category .feature-article-list {
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  .feature-article.feature-article-category .feature-article-list .factory-column-item:nth-child(n+2) {
+    width: 100%;
+    margin-bottom: 40px !important;
+  }
+}
 @media (max-width: 767px) {
   .feature-article {
     padding-top: 40px;
