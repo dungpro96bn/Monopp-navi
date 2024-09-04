@@ -780,6 +780,8 @@
     max-width: 368px;
     margin: auto;
     display: none;
+    max-height: 90vh;
+    overflow: auto;
   }
 
   &.is-menu{
@@ -943,11 +945,8 @@
   #menu{
     margin-bottom: 32px;
 
-    li{
-      width: 100%;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-
-      &:last-child{
+    #navList-menu{
+      >li:last-child{
         a{
           &:after{
             content: "";
@@ -959,15 +958,13 @@
             right: -8px;
             display: inline-block;
           }
-
-          &:hover{
-            &:after{
-
-            }
-          }
-
         }
       }
+    }
+
+    li{
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 
       a{
         display: flex;
@@ -1003,6 +1000,15 @@
         }
 
       }
+
+      .sub-menu{
+        margin-left: 20px;
+
+        li{
+          border-bottom: 0;
+        }
+      }
+
     }
   }
 
