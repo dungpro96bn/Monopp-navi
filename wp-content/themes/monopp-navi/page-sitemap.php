@@ -50,7 +50,7 @@ endif;
                             </li>
                             <li class="page-item">
                                 <div class="link-page toggle">
-                                    <span class="title-page">タグ一覧</span>
+                                    <span class="title-page">おすすめタグ</span>
                                     <i class="fa-light fa-minus"></i>
                                 </div>
                                 <div class="tags-post-list">
