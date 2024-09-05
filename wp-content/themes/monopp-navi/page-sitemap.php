@@ -26,21 +26,27 @@ endif;
                             </li>
                             <li class="page-item">
                                 <a class="link-page" href="/new/">
-                                    <span class="title-page">新着記事一覧</span>
+                                    <span class="title-page">新着記事</span>
                                     <i class="fa-solid fa-arrow-right-long"></i>
                                 </a>
                             </li>
                             <li class="page-item">
                                 <a class="link-page" href="/popular/">
-                                    <span class="title-page">人気記事一覧</span>
+                                    <span class="title-page">人気記事</span>
                                     <i class="fa-solid fa-arrow-right-long"></i>
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="link-page" href="#">
-                                    <span class="title-page">特集記事一覧</span>
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </a>
+                                <div class="link-page toggle">
+                                    <span class="title-page">特集記事</span>
+                                    <i class="fa-light fa-plus"></i>
+                                </div>
+                                <div class="sub-menu">
+                                    <ul class="menu-list">
+                                        <li class="menu-item"><a href="/category/factory-column/"><span>#1</span>工場・倉庫系オシゴト特集<i class="fa-solid fa-arrow-right-long"></i></a></li>
+                                        <li class="menu-item"><a href="/category/part-time-job/"><span>#2</span>パート・アルバイトコラム<i class="fa-solid fa-arrow-right-long"></i></a></li>
+                                    </ul>
+                                </div>
                             </li>
                             <li class="page-item">
                                 <div class="link-page toggle">

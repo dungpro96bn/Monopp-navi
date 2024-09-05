@@ -15,7 +15,7 @@
                     'meta_query'     => array(
                         array(
                             'key'     => 'select_this_post_slider',
-                            'value'   => 'Yes',
+                            'value'   => '選択',
                             'compare' => 'LIKE'
                         )
                     ),

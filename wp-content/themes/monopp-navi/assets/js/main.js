@@ -263,7 +263,7 @@ jQuery(function ($) {
     $(".page-item .link-page.toggle").on('click', function () {
         $(this).find("i").toggleClass("fa-minus");
         $(this).find("i").toggleClass("fa-plus");
-        $(".tags-post-list").slideToggle(300);
+        $(this).next().slideToggle(300);
     });
 
     $("#header-popup .menu-item-has-children > a").click(function () {

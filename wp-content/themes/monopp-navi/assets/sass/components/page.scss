@@ -157,6 +157,83 @@
     .page-item{
       margin-bottom: 16px;
 
+      .sub-menu{
+        display: none;
+        margin-left: 20px;
+        padding: 20px 0 4px;
+
+        @include xs{
+          padding: 20px 0 12px;
+          margin-left: 12px;
+        }
+
+        .menu-item{
+          margin-bottom: 12px;
+
+          &:last-child{
+            margin-bottom: 0;
+          }
+
+          a{
+            border-radius: 12px;
+            background: #f4f6f5;
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 10px;
+            align-items: center;
+            width: 100%;
+            color: #2e2e2e;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: 1.8px;
+            height: 50px;
+            padding: 6px 24px;
+            position: relative;
+
+            &:hover{
+              background: #51A940;
+              color: #fff;
+            }
+
+            @include xs{
+              font-size: 14px;
+              padding: 6px 16px;
+            }
+
+            @media (max-width: 375px) {
+              font-size: 13px;
+              column-gap: 8px;
+              padding: 6px 10px;
+              height: 46px;
+            }
+
+          }
+
+          span{
+            font-weight: 400;
+          }
+
+          i{
+            font-weight: 300;
+            position: absolute;
+            top: 16px;
+            right: 24px;
+
+            @include xs{
+              right: 16px;
+            }
+
+            @media (max-width: 375px) {
+              right: 10px;
+            }
+
+          }
+
+        }
+      }
+
       .link-page{
         border-radius: 12px;
         background: #F4F6F5;

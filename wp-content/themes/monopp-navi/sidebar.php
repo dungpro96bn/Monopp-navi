@@ -12,7 +12,7 @@
                     'meta_query'     => array(
                         array(
                             'key'     => 'select_popular_posts',
-                            'value'   => 'Yes',
+                            'value'   => '選択',
                             'compare' => 'LIKE'
                         )
                     ),
