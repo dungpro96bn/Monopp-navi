@@ -75,7 +75,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 				}
 			}
 			if($cat -> slug == "factory-column" || $cat -> slug == "part-time-job"){
-                $str.='<li><a href="/feature/">特集記事</a></li><li>'. $cat -> name . '</li>';
+                $str.='<li>特集記事</li><li>'. $cat -> name . '</li>';
             } else{
                 $str.='<li>'. $cat -> name . '</li>';
             }
