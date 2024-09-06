@@ -141,117 +141,90 @@
 
     <div class="feature-article">
         <h2 class="heading-block"><span>特集記事</span></h2>
-        <div class="factory-column feature-article-col">
-            <div class="inner">
-                <ul class="feature-article-list">
-                    <li class="factory-column-item title-item">
-                        <div class="info-inner">
-                            <h3 class="title"><?php the_field('title_factory_column'); ?></h3>
-                            <div class="text"><?php the_field('description_factory_column'); ?></div>
-                            <span class="number-block">#1</span>
-                        </div>
-                    </li>
-                    <?php
-                    $args = array(
-                        'post_type'=> 'post',
-                        'post_status' => 'publish',
-                        'order'    => 'DESC',
-                        'posts_per_page' => '4',
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'category',
-                                'field'    => 'slug',
-                                'terms'    => 'factory-column',
-                            ),
-                        ),
-                    );
-                    $result = new WP_Query( $args );
-                    if ( $result-> have_posts() ) : ?>
-                        <?php while ( $result->have_posts() ) : $result->the_post(); ?>
-                            <li class="factory-column-item">
-                                <a class="link-post" href="<?php the_permalink(); ?>">
-                                    <p class="image-post">
-                                        <img src="<?php echo get_the_post_thumbnail_url(); ?>">
-                                    </p>
-                                    <h2 class="title-post"><?php echo get_the_title(); ?></h2>
-                                </a>
-                                <div class="info-bottom">
-                                    <div class="category">
-                                        <?php
-                                        $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
-                                        foreach ($country_lists as $country_list) { ?>
-                                            <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
-                                        <?php } ?>
+
+        <div class="blogs-list">
+            <?php
+            $args = array(
+                'taxonomy'   => 'category',
+                'hide_empty' => true,
+                'orderby'    => 'ID',
+                'order'      => 'ASC',
+                'parent'     => 0,
+                'exclude'    => array(1)
+            );
+            $areas = get_categories($args);
+            $number = 1;
+            ?>
+
+            <?php foreach($areas as $area) :?>
+                <?php $terms = $area->slug;
+                $termID = $area->term_id;
+                $num = $number++;
+                ?>
+
+                <div class="<?php echo $terms; ?> feature-article-col">
+                    <div class="inner">
+                        <ul class="feature-article-list">
+                            <?php
+                            $args = array(
+                                'post_type'=> 'post',
+                                'post_status' => 'publish',
+                                'order'    => 'DESC',
+                                'posts_per_page' => '4',
+                                'tax_query'      => array(
+                                    array(
+                                        'taxonomy' => 'category',
+                                        'field'    => 'slug',
+                                        'terms'    => $terms,
+                                    ),
+                                ),
+                            );
+                            $result = new WP_Query( $args );
+                            if ( $result-> have_posts() ) : ?>
+                                <li class="factory-column-item title-item">
+                                    <div class="info-inner">
+                                        <h3 class="title"><?php echo $area->name; ?></h3>
+                                        <div class="text"><?php echo $area->description; ?></div>
+                                        <span class="number-block">#<?php echo $num; ?></span>
                                     </div>
-                                    <p class="date-time number"><?php echo get_the_date(); ?></p>
-                                </div>
-                            </li>
-                        <?php endwhile;?>
-                    <?php endif;
-                    wp_reset_postdata(); ?>
-                </ul>
-                <div class="actions-toolbar">
-                    <a class="action-links" href="/category/factory-column/">もっと見る</a>
+                                </li>
+                                <?php while ( $result->have_posts() ) : $result->the_post(); ?>
+                                    <li class="factory-column-item">
+                                        <a class="link-post" href="<?php the_permalink(); ?>">
+                                            <p class="image-post">
+                                                <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                                            </p>
+                                            <h2 class="title-post"><?php echo get_the_title(); ?></h2>
+                                        </a>
+                                        <div class="info-bottom">
+                                            <div class="category">
+                                                <?php
+                                                $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
+                                                foreach ($country_lists as $country_list) { ?>
+                                                    <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
+                                                <?php } ?>
+                                            </div>
+                                            <p class="date-time number"><?php echo get_the_date(); ?></p>
+                                        </div>
+                                    </li>
+                                <?php endwhile;?>
+                            <?php endif;
+                            wp_reset_postdata(); ?>
+                        </ul>
+                        <div class="actions-toolbar">
+                            <a class="action-links" href="/category/<?php echo $terms; ?>">もっと見る</a>
+                        </div>
+                    </div>
+                    <?php $titleEN = get_term_meta($termID,'title_en', true);
+                    if($titleEN): ?>
+                        <span class="title-banner"><?php echo $titleEN; ?></span>
+                    <?php endif; ?>
                 </div>
-            </div>
+
+            <?php endforeach; ?>
+
         </div>
 
-        <div class="part-time-job feature-article-col">
-            <div class="inner">
-                <ul class="feature-article-list part-time-list">
-                    <li class="factory-column-item title-item">
-                        <div class="info-inner">
-                            <h3 class="title"><?php the_field('title_part_time_job'); ?></h3>
-                            <div class="text"><?php the_field('description_part_time_job'); ?></div>
-                            <span class="number-block">#2</span>
-                        </div>
-                    </li>
-                    <?php
-                    $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-                    $args = array(
-                        'post_type'=> 'post',
-                        'post_status' => 'publish',
-                        'order'    => 'DESC',
-                        'paged' => $paged,
-                        'posts_per_page' => '4',
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'category',
-                                'field'    => 'slug',
-                                'terms'    => 'part-time-job',
-                            ),
-                        ),
-                    );
-                    $result = new WP_Query( $args );
-                    if ( $result-> have_posts() ) : ?>
-                        <?php while ( $result->have_posts() ) : $result->the_post(); ?>
-                            <li class="factory-column-item">
-                                <a class="link-post" href="<?php the_permalink(); ?>">
-                                    <p class="image-post">
-                                        <img src="<?php echo get_the_post_thumbnail_url(); ?>">
-                                    </p>
-                                    <h2 class="title-post"><?php echo get_the_title(); ?></h2>
-                                </a>
-                                <div class="info-bottom">
-                                    <div class="category">
-                                        <?php
-                                        $country_lists = wp_get_post_terms($post->ID, 'post-tags', array("fields" => "all"));
-                                        foreach($country_lists as $country_list) { ?>
-                                            <a href="<?php echo get_category_link($country_list->term_id); ?>"># <?php echo $country_list->name; ?></a>
-                                        <?php } ?>
-                                    </div>
-                                    <p class="date-time number"><?php echo get_the_date(); ?></p>
-                                </div>
-                            </li>
-                        <?php endwhile;?>
-                    <?php endif;
-                    wp_reset_postdata(); ?>
-                </ul>
-                <div class="actions-toolbar">
-                    <a class="action-links" href="/category/part-time-job/">もっと見る</a>
-                </div>
-            </div>
-        </div>
     </div>
 
 

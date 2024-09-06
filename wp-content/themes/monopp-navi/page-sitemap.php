@@ -42,9 +42,26 @@ endif;
                                     <i class="fa-light fa-plus"></i>
                                 </div>
                                 <div class="sub-menu">
+                                    <?php
+                                    $args = array(
+                                        'taxonomy'   => 'category',
+                                        'hide_empty' => true,
+                                        'orderby'    => 'ID',
+                                        'order'      => 'ASC',
+                                        'parent'     => 0,
+                                        'exclude'    => array(1)
+                                    );
+                                    $areas = get_categories($args);
+                                    $number = 1;
+                                    ?>
                                     <ul class="menu-list">
-                                        <li class="menu-item"><a href="/category/factory-column/"><span>#1</span>工場・倉庫系オシゴト特集<i class="fa-solid fa-arrow-right-long"></i></a></li>
-                                        <li class="menu-item"><a href="/category/part-time-job/"><span>#2</span>パート・アルバイトコラム<i class="fa-solid fa-arrow-right-long"></i></a></li>
+                                        <?php foreach($areas as $area) :?>
+                                            <?php $terms = $area->slug;
+                                            $termID = $area->term_id;
+                                            $num = $number++;
+                                            ?>
+                                            <li class="menu-item"><a href="/category/<?php echo $area->slug; ?>"><span>#<?php echo $num;?></span><?php echo $area->name; ?><i class="fa-solid fa-arrow-right-long"></i></a></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </li>

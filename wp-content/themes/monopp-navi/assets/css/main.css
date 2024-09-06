@@ -1928,8 +1928,7 @@
     height: 324px;
   }
 }
-.feature-article .feature-article-col:after {
-  content: "FACTORY COLUMN";
+.feature-article .feature-article-col .title-banner {
   position: absolute;
   color: #000;
   font-family: "LINE Seed JP_OTF";
@@ -1941,23 +1940,20 @@
   top: 253px;
   left: -12px;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 @media (max-width: 1400px) {
-  .feature-article .feature-article-col:after {
+  .feature-article .feature-article-col .title-banner {
     left: -12px;
     transform: unset;
   }
 }
-.feature-article .feature-article-col.part-time-job:after {
-  content: "PART-TIME JOB COLUMN";
-}
-@media (max-width: 1400px) {
-  .feature-article .feature-article-col.part-time-job:after {
-    left: -12px;
-    transform: unset;
+@media (max-width: 767px) {
+  .feature-article .feature-article-col .title-banner {
+    display: none;
   }
 }
-.feature-article .feature-article-col.part-time-job:before {
+.feature-article .feature-article-col:nth-child(2n):before {
   content: "";
   position: absolute;
   border-radius: 24px 0 0 24px;
@@ -1969,40 +1965,52 @@
   left: unset;
 }
 @media (max-width: 1023px) {
-  .feature-article .feature-article-col.part-time-job:before {
+  .feature-article .feature-article-col:nth-child(2n):before {
     width: calc(100% - 80px);
   }
 }
 @media (max-width: 767px) {
-  .feature-article .feature-article-col.part-time-job:before {
+  .feature-article .feature-article-col:nth-child(2n):before {
     width: calc(100% - 24px);
     border-radius: 12px 0 0 12px;
     height: 356px;
   }
 }
-.feature-article .feature-article-col.part-time-job .feature-article-list .factory-column-item.title-item {
+.feature-article .feature-article-col:nth-child(2n) .feature-article-list .factory-column-item.title-item {
   padding-right: 0;
   padding-top: 0;
 }
-.feature-article .feature-article-col.part-time-job .feature-article-list .factory-column-item.title-item .number-block {
-  top: -31px;
-}
-.feature-article .feature-article-col.part-time-job .feature-article-list .factory-column-item.title-item .info-inner {
+.feature-article .feature-article-col:nth-child(2n) .feature-article-list .factory-column-item.title-item .info-inner {
   position: relative;
   margin-left: 82px;
 }
 @media (max-width: 1023px) {
-  .feature-article .feature-article-col.part-time-job .feature-article-list .factory-column-item.title-item .info-inner {
+  .feature-article .feature-article-col:nth-child(2n) .feature-article-list .factory-column-item.title-item .info-inner {
     margin-left: 30px;
     padding-top: 28px;
   }
 }
 @media (max-width: 767px) {
-  .feature-article .feature-article-col.part-time-job .feature-article-list .factory-column-item.title-item .info-inner {
+  .feature-article .feature-article-col:nth-child(2n) .feature-article-list .factory-column-item.title-item .info-inner {
     padding-top: 0;
     margin-left: 25px;
     padding-right: 30px;
   }
+}
+.feature-article .feature-article-col:nth-child(2n) .factory-column-item.title-item {
+  order: 2;
+}
+.feature-article .feature-article-col:nth-child(2n) .factory-column-item:nth-child(2) {
+  order: 1;
+}
+.feature-article .feature-article-col:nth-child(2n) .factory-column-item:nth-child(3) {
+  order: 3;
+}
+.feature-article .feature-article-col:nth-child(2n) .factory-column-item:nth-child(4) {
+  order: 4;
+}
+.feature-article .feature-article-col:nth-child(2n) .factory-column-item:nth-child(5) {
+  order: 5;
 }
 .feature-article .feature-article-list {
   display: flex;
@@ -2025,7 +2033,7 @@
 .feature-article .feature-article-list .factory-column-item.title-item {
   width: 50%;
   position: relative;
-  padding-top: 28px;
+  padding-top: 0px;
   padding-right: 50px;
 }
 .feature-article .feature-article-list .factory-column-item.title-item .title {
@@ -2056,7 +2064,7 @@
   line-height: 1.5;
   letter-spacing: 4.2px;
   opacity: 0.5;
-  top: 6px;
+  top: -22px;
   left: -44px;
 }
 @media (max-width: 1023px) {
@@ -2228,21 +2236,6 @@
   .feature-article .feature-article-list .factory-column-item:last-child {
     margin-bottom: 0 !important;
   }
-}
-.feature-article .feature-article-list.part-time-list .factory-column-item.title-item {
-  order: 2;
-}
-.feature-article .feature-article-list.part-time-list .factory-column-item:nth-child(2) {
-  order: 1;
-}
-.feature-article .feature-article-list.part-time-list .factory-column-item:nth-child(3) {
-  order: 3;
-}
-.feature-article .feature-article-list.part-time-list .factory-column-item:nth-child(4) {
-  order: 4;
-}
-.feature-article .feature-article-list.part-time-list .factory-column-item:nth-child(5) {
-  order: 5;
 }
 
 .popular-articles .popular-articles-item {
