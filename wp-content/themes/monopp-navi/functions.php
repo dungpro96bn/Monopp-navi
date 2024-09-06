@@ -74,11 +74,7 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcr
 					$str.='<li><a href="'. get_category_link($ancestor) .'">'. get_cat_name($ancestor) .'</a></li>';
 				}
 			}
-			if($cat -> slug == "factory-column" || $cat -> slug == "part-time-job"){
-                $str.='<li>特集記事</li><li>'. $cat -> name . '</li>';
-            } else{
-                $str.='<li>'. $cat -> name . '</li>';
-            }
+            $str.='<li>特集記事</li><li>'. $cat -> name . '</li>';
 		} elseif(is_single()){
 			$categories = get_the_category($post->ID);
 			$cat = $categories[0];
