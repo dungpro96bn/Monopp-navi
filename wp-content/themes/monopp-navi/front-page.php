@@ -183,7 +183,12 @@
                             if ( $result-> have_posts() ) : ?>
                                 <li class="factory-column-item title-item">
                                     <div class="info-inner">
-                                        <h3 class="title"><?php echo $area->name; ?></h3>
+                                        <?php $titleCategory = get_term_meta($termID, 'sub_title_category', true);
+                                        if($titleCategory):?>
+                                            <h3 class="title"><?php echo nl2br(htmlspecialchars($titleCategory)); ?></h3>
+                                        <?php else: ?>
+                                            <h3 class="title"><?php echo $area->name; ?></h3>
+                                        <?php endif; ?>
                                         <div class="text"><?php echo $area->description; ?></div>
                                         <span class="number-block">#<?php echo $num; ?></span>
                                     </div>

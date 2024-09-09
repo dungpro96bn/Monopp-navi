@@ -55,7 +55,12 @@ if (!empty($categories) && !is_wp_error($categories)) {
                     <ul class="feature-article-list">
                         <li class="factory-column-item title-item">
                             <div class="info-inner">
-                                <h3 class="title"><?php echo $category->name; ?></h3>
+                                <?php $titleCategory = get_term_meta($current_category->term_id, 'sub_title_category', true);
+                                if($titleCategory):?>
+                                    <h3 class="title"><?php echo nl2br(htmlspecialchars($titleCategory)); ?></h3>
+                                <?php else: ?>
+                                    <h3 class="title"><?php echo $category->name; ?></h3>
+                                <?php endif; ?>
                                 <div class="text"><?php echo $category->description; ?></div>
                                 <span class="number-block">#<?php echo $current_index; ?></span>
                             </div>
@@ -100,6 +105,10 @@ if (!empty($categories) && !is_wp_error($categories)) {
                         wp_reset_postdata(); ?>
                     </ul>
                 </div>
+                <?php $titleEN = get_term_meta($current_category->term_id,'title_en', true);
+                if($titleEN): ?>
+                    <span class="title-banner"><?php echo $titleEN; ?></span>
+                <?php endif; ?>
             </div>
         </div>
 
