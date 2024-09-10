@@ -271,4 +271,12 @@ jQuery(function ($) {
         $(this).toggleClass("is-active");
     });
 
+    $('#toc_container .toc_list li').has('ul').addClass('submenu').children('a').after('<span class="toggle-doc"><i class="fa-solid fa-plus"></i></span>');
+
+    $( "body" ).delegate( "#toc_container .toc_list li > .toggle-doc", "click", function() {
+        $(this).next().slideToggle(300);
+        $(this).find("i").toggleClass("fa-minus");
+        $(this).find("i").toggleClass("fa-plus");
+    });
+
 });

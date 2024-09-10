@@ -67,8 +67,7 @@ if (!empty($categories)) {
                                         </picture>
                                     </div>
                                     <div class="info">
-                                        <h2 class="title">ものっぷで日本のモノづくりを一緒に支えませんか？</h2>
-                                        <p class="text">ものっぷではさまざまな製造に関する求人を紹介いたします。</p>
+                                        <h2 class="title">ものっぷではさまざまな製造に関する求人を紹介いたします。</h2>
                                     </div>
                                 </div>
                                 <div class="action">
@@ -87,8 +86,7 @@ if (!empty($categories)) {
                                         </picture>
                                     </div>
                                     <div class="info">
-                                        <h2 class="title">ものっぷでは製造に興味があるメンバーを募集中！</h2>
-                                        <p class="text">製造系のお仕事にご興味がある⽅は、まずはカンタン応募/登録へ！<br/>⼀⼈ひとりに担当がついてご希望などをヒアリングして、あなたに合ったお仕事をご紹介します。</p>
+                                        <h2 class="title">製造系のお仕事にご興味がある⽅は、まずはカンタン応募/登録へ！<br/>⼀⼈ひとりに担当がついてご希望などをヒアリングして、あなたに合ったお仕事をご紹介します。</h2>
                                     </div>
                                 </div>
                                 <div class="action">

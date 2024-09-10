@@ -1326,10 +1326,10 @@ if ( ! class_exists( 'TOC_Plus' ) ) :
 						$html .= '<span class="toc_number toc_depth_' . ( $current_depth - $numbered_items_min + 1 ) . '">';
 						for ( $j = $numbered_items_min; $j < $current_depth; $j++ ) {
 							$number = ( $numbered_items[ $j ] ) ? $numbered_items[ $j ] : 0;
-							$html  .= $number . '.';
+//							$html  .= $number . '.';
 						}
 
-						$html .= ( $numbered_items[ $current_depth ] + 1 ) . '</span> ';
+						$html .= ( $numbered_items[ $current_depth ] + 1 ) . '.</span> ';
 						$numbered_items[ $current_depth ]++;
 					}
 					$html .= wp_strip_all_tags( $matches[ $i ][0] ) . '</a>';
