@@ -57,49 +57,78 @@ if (!empty($categories)) {
                         <?php
                         $dataValue = get_field('link_options');
                         if( $dataValue == 'https://monoppu.com' ):?>
-                        <div class="search-job search-job">
-                            <div class="content-box">
-                                <div class="box-top">
-                                    <div class="logo-option">
-                                        <picture class="image">
-                                            <source srcset="/wp-content/uploads/53799.png 2x">
-                                            <img class="sizes" src="/wp-content/uploads/53799.png" alt="">
-                                        </picture>
-                                    </div>
-                                    <div class="info">
-                                        <h2 class="title">ものっぷではさまざまな製造に関する求人を紹介いたします。</h2>
+                            <?php
+                            $slug = 'banner-1';
+                            $taxonomy = 'banner-post';
+
+                            $term = get_term_by( 'slug', $slug, $taxonomy );
+                            $termId = $term->term_id;
+
+                            if ( ! is_wp_error( $term ) ) :?>
+                                <div class="search-job search-job">
+                                    <div class="content-box">
+                                        <div class="box-top">
+                                            <div class="logo-option">
+                                                <?php
+                                                $image = get_term_meta($termId, 'image_banner', true);
+                                                if ( $image ) {
+                                                    $image_url = wp_get_attachment_image_url( $image, 'full' );
+                                                } ?>
+                                                <picture class="image">
+                                                    <source srcset="<?php echo esc_url( $image_url ); ?> 2x">
+                                                    <img class="sizes" src="<?php echo esc_url( $image_url ); ?>" alt="">
+                                                </picture>
+                                            </div>
+                                            <div class="info">
+                                                <h2 class="title"><?php echo get_term_meta($termId, 'title_banner', true); ?></h2>
+                                            </div>
+                                        </div>
+                                        <div class="action">
+                                            <a target="_blank" href="<?php echo $dataValue; ?>">ものっぷでお仕事を探す</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="action">
-                                    <a target="_blank" href="<?php echo $dataValue; ?>">ものっぷでお仕事を探す</a>
-                                </div>
-                            </div>
-                        </div>
+                            <?php endif; ?>
                         <?php elseif ($dataValue == "https://monoppu.com/register"):?>
-                        <div class="search-job register">
-                            <div class="content-box">
-                                <div class="box-top">
-                                    <div class="logo-option">
-                                        <picture class="image">
-                                            <source srcset="/wp-content/uploads/53799.png 2x">
-                                            <img class="sizes" src="/wp-content/uploads/53799.png" alt="">
-                                        </picture>
-                                    </div>
-                                    <div class="info">
-                                        <h2 class="title">製造系のお仕事にご興味がある⽅は、まずはカンタン応募/登録へ！<br/>⼀⼈ひとりに担当がついてご希望などをヒアリングして、あなたに合ったお仕事をご紹介します。</h2>
+                            <?php
+                            $slug = 'banner-2';
+                            $taxonomy = 'banner-post';
+
+                            $term = get_term_by( 'slug', $slug, $taxonomy );
+                            $termId = $term->term_id;
+
+                            if ( ! is_wp_error( $term ) ) :?>
+                                <div class="search-job register">
+                                    <div class="content-box">
+                                        <div class="box-top">
+                                            <div class="logo-option">
+                                                <?php
+                                                $image = get_term_meta($termId, 'image_banner', true);
+                                                if ( $image ) {
+                                                    $image_url = wp_get_attachment_image_url( $image, 'full' );
+                                                } ?>
+                                                <picture class="image">
+                                                    <source srcset="<?php echo esc_url( $image_url ); ?> 2x">
+                                                    <img class="sizes" src="<?php echo esc_url( $image_url ); ?>" alt="">
+                                                </picture>
+                                            </div>
+                                            <div class="info">
+                                                <h2 class="title"><?php echo get_term_meta($termId, 'title_banner', true); ?></h2>
+                                            </div>
+                                        </div>
+                                        <div class="action">
+                                            <a target="_blank" href="<?php echo $dataValue; ?>">カンタン応募/登録する</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="action">
-                                    <a target="_blank" href="<?php echo $dataValue; ?>">カンタン応募/登録する</a>
-                                </div>
-                            </div>
-                        </div>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>
                 <?php get_sidebar(); ?>
             </div>
         </div>
+
 
         <div class="related-article">
             <div class="inner">
